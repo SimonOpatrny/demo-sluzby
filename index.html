@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NOVA Services | Profesionální služby</title>
+<meta name="description" content="Ukázkový koncept moderního webu pro poskytovatele služeb.">
+
+<style>
+:root{
+    --dark:#0d1720;
+    --dark2:#12212c;
+    --blue:#1d6fff;
+    --blue2:#54a5ff;
+    --green:#24c78e;
+    --text:#17212b;
+    --muted:#66727f;
+    --light:#f5f8fb;
+    --white:#ffffff;
+    --border:#e3e9ef;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    color:var(--text);
+    background:white;
+    line-height:1.6;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:min(1180px,90%);
+    margin:auto;
+}
+
+/* DEMO BAR */
+
+.demo-bar{
+    background:#081119;
+    color:#d7e2ec;
+    text-align:center;
+    padding:8px 15px;
+    font-size:13px;
+    letter-spacing:.3px;
+}
+
+.demo-bar strong{
+    color:#63aaff;
+}
+
+/* NAV */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+.nav{
+    height:78px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    font-size:21px;
+    font-weight:800;
+}
+
+.logo-icon{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,var(--blue),#68b8ff);
+    color:white;
+    font-weight:900;
+    box-shadow:0 8px 25px rgba(29,111,255,.25);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    list-style:none;
+    color:#48545f;
+    font-size:15px;
+    font-weight:600;
+}
+
+.nav-links a:hover{
+    color:var(--blue);
+}
+
+.nav-cta{
+    background:var(--dark);
+    color:white!important;
+    padding:11px 18px;
+    border-radius:10px;
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    padding:105px 0 115px;
+    background:
+        radial-gradient(circle at 85% 20%,rgba(84,165,255,.17),transparent 26%),
+        radial-gradient(circle at 70% 90%,rgba(36,199,142,.10),transparent 25%),
+        linear-gradient(180deg,#f9fbfd,#fff);
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border:1px solid rgba(29,111,255,.09);
+    border-radius:50%;
+    right:-200px;
+    top:-160px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.08fr .92fr;
+    gap:80px;
+    align-items:center;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#eaf3ff;
+    color:#1761c8;
+    border:1px solid #d3e6ff;
+    padding:7px 12px;
+    border-radius:50px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:24px;
+}
+
+.dot{
+    width:8px;
+    height:8px;
+    background:var(--green);
+    border-radius:50%;
+}
+
+h1{
+    font-size:clamp(45px,6vw,72px);
+    line-height:1.04;
+    letter-spacing:-3.5px;
+    color:#101b25;
+    max-width:720px;
+}
+
+h1 span{
+    color:var(--blue);
+}
+
+.hero-text{
+    max-width:640px;
+    font-size:18px;
+    color:#66727f;
+    margin:26px 0 33px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:13px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    gap:9px;
+    padding:14px 21px;
+    border-radius:11px;
+    font-weight:700;
+    transition:.25s;
+    cursor:pointer;
+    border:none;
+    font-size:15px;
+}
+
+.btn-blue{
+    background:var(--blue);
+    color:white;
+    box-shadow:0 12px 28px rgba(29,111,255,.23);
+}
+
+.btn-blue:hover{
+    background:#105fdc;
+    transform:translateY(-2px);
+}
+
+.btn-light{
+    background:white;
+    border:1px solid var(--border);
+}
+
+.btn-light:hover{
+    border-color:#b7c1cb;
+}
+
+.hero-features{
+    display:flex;
+    gap:23px;
+    flex-wrap:wrap;
+    margin-top:33px;
+    color:#64717d;
+    font-size:13px;
+    font-weight:600;
+}
+
+.check{
+    color:var(--green);
+    font-weight:900;
+}
+
+/* HERO CARD */
+
+.hero-card-wrap{
+    position:relative;
+}
+
+.hero-card{
+    position:relative;
+    z-index:2;
+    background:white;
+    border:1px solid #e5ebf1;
+    border-radius:24px;
+    padding:31px;
+    box-shadow:0 35px 80px rgba(25,48,69,.13);
+}
+
+.mini-label{
+    font-size:12px;
+    color:#88939d;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    font-weight:800;
+}
+
+.hero-card h3{
+    font-size:25px;
+    margin:7px 0 7px;
+}
+
+.hero-card > p{
+    color:#76818c;
+    font-size:14px;
+}
+
+.fake-services{
+    margin-top:25px;
+    display:grid;
+    gap:11px;
+}
+
+.fake-service{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    border:1px solid #e9edf1;
+    padding:15px;
+    border-radius:13px;
+}
+
+.service-icon-small{
+    min-width:43px;
+    height:43px;
+    border-radius:10px;
+    display:grid;
+    place-items:center;
+    background:#edf5ff;
+    font-size:18px;
+}
+
+.fake-service strong{
+    display:block;
+    font-size:14px;
+}
+
+.fake-service span{
+    color:#8a949d;
+    font-size:12px;
+}
+
+.floating{
+    position:absolute;
+    z-index:4;
+    bottom:-28px;
+    left:-35px;
+    background:var(--dark);
+    color:white;
+    padding:17px 20px;
+    border-radius:14px;
+    box-shadow:0 18px 45px rgba(0,0,0,.2);
+}
+
+.floating strong{
+    display:block;
+    font-size:19px;
+}
+
+.floating span{
+    font-size:12px;
+    color:#aebbc5;
+}
+
+/* STATS */
+
+.stats{
+    border-bottom:1px solid var(--border);
+    border-top:1px solid var(--border);
+}
+
+.stats-grid{
+    min-height:120px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    align-items:center;
+}
+
+.stat{
+    text-align:center;
+    border-right:1px solid var(--border);
+}
+
+.stat:last-child{
+    border:none;
+}
+
+.stat strong{
+    display:block;
+    font-size:24px;
+    color:#15212b;
+}
+
+.stat span{
+    font-size:13px;
+    color:#7a8691;
+}
+
+/* SECTION */
+
+section{
+    padding:105px 0;
+}
+
+.section-tag{
+    display:inline-block;
+    color:var(--blue);
+    text-transform:uppercase;
+    font-weight:800;
+    font-size:12px;
+    letter-spacing:1.7px;
+    margin-bottom:9px;
+}
+
+.section-title{
+    font-size:clamp(34px,4.5vw,51px);
+    line-height:1.08;
+    letter-spacing:-2px;
+    max-width:720px;
+}
+
+.section-sub{
+    color:#71808d;
+    margin-top:16px;
+    max-width:650px;
+    font-size:16px;
+}
+
+/* SERVICES */
+
+.services{
+    background:var(--light);
+}
+
+.services-grid{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.service-card{
+    background:white;
+    border:1px solid #e3e9ef;
+    padding:30px;
+    border-radius:18px;
+    transition:.3s;
+}
+
+.service-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 20px 45px rgba(25,48,69,.09);
+    border-color:#cbd7e2;
+}
+
+.service-icon{
+    width:53px;
+    height:53px;
+    border-radius:13px;
+    background:#eaf3ff;
+    color:var(--blue);
+    display:grid;
+    place-items:center;
+    font-size:22px;
+    margin-bottom:23px;
+}
+
+.service-card h3{
+    font-size:19px;
+    margin-bottom:8px;
+}
+
+.service-card p{
+    color:#74808b;
+    font-size:14px;
+}
+
+.service-link{
+    display:inline-block;
+    color:var(--blue);
+    margin-top:18px;
+    font-size:13px;
+    font-weight:800;
+}
+
+/* ABOUT */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+}
+
+.about-visual{
+    min-height:490px;
+    border-radius:25px;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(84,165,255,.25),transparent 30%),
+        linear-gradient(135deg,#102333,#183d56);
+}
+
+.visual-center{
+    position:absolute;
+    inset:50% auto auto 50%;
+    transform:translate(-50%,-50%);
+    width:72%;
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.14);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:20px;
+    color:white;
+}
+
+.visual-center span{
+    color:#90a9bb;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.visual-center h3{
+    margin:7px 0 20px;
+    font-size:24px;
+}
+
+.progress{
+    margin:17px 0;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    margin-bottom:6px;
+}
+
+.progress-bar{
+    height:6px;
+    background:rgba(255,255,255,.12);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    background:#54a5ff;
+    border-radius:20px;
+}
+
+.about-list{
+    margin-top:30px;
+    display:grid;
+    gap:18px;
+}
+
+.about-item{
+    display:flex;
+    gap:14px;
+}
+
+.about-check{
+    flex:none;
+    width:28px;
+    height:28px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#e9fbf4;
+    color:#159b6d;
+    font-weight:900;
+}
+
+.about-item strong{
+    display:block;
+    margin-bottom:2px;
+}
+
+.about-item p{
+    color:#77838e;
+    font-size:14px;
+}
+
+/* PROCESS */
+
+.process{
+    background:var(--dark);
+    color:white;
+}
+
+.process .section-title{
+    color:white;
+}
+
+.process .section-sub{
+    color:#a7b3bc;
+}
+
+.process-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    margin-top:55px;
+    gap:18px;
+}
+
+.process-card{
+    padding:27px;
+    border:1px solid #263b49;
+    border-radius:17px;
+    background:#11212c;
+}
+
+.number{
+    font-size:12px;
+    color:#62aaff;
+    font-weight:900;
+    margin-bottom:35px;
+}
+
+.process-card h3{
+    margin-bottom:8px;
+}
+
+.process-card p{
+    color:#98a7b1;
+    font-size:13px;
+}
+
+/* TESTIMONIAL STYLE / WITHOUT FAKE REVIEW */
+
+.promise{
+    background:white;
+}
+
+.promise-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+    padding:55px;
+    background:#f5f8fb;
+    border:1px solid #e2e8ee;
+    border-radius:25px;
+}
+
+.promise-cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.promise-card{
+    background:white;
+    padding:20px;
+    border:1px solid #e1e7ec;
+    border-radius:14px;
+}
+
+.promise-card strong{
+    display:block;
+    margin-top:9px;
+}
+
+.promise-card span{
+    color:#7c8790;
+    font-size:12px;
+}
+
+/* CONTACT */
+
+.contact{
+    background:#f4f7fa;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:65px;
+    align-items:start;
+}
+
+.contact-info{
+    margin-top:32px;
+    display:grid;
+    gap:16px;
+}
+
+.contact-line{
+    display:flex;
+    gap:13px;
+    align-items:center;
+}
+
+.contact-circle{
+    width:43px;
+    height:43px;
+    flex:none;
+    border-radius:11px;
+    background:white;
+    border:1px solid var(--border);
+    display:grid;
+    place-items:center;
+}
+
+.contact-line span{
+    display:block;
+    font-size:12px;
+    color:#8a949e;
+}
+
+.contact-line strong{
+    font-size:14px;
+}
+
+.form{
+    background:white;
+    border:1px solid #dfe6ec;
+    padding:32px;
+    border-radius:20px;
+    box-shadow:0 20px 55px rgba(32,55,75,.07);
+}
+
+.form h3{
+    font-size:23px;
+    margin-bottom:5px;
+}
+
+.form-sub{
+    color:#7c8791;
+    font-size:13px;
+    margin-bottom:24px;
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+}
+
+.field{
+    margin-bottom:13px;
+}
+
+label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #dce3e9;
+    border-radius:9px;
+    font:inherit;
+    font-size:14px;
+    outline:none;
+    background:white;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#73adff;
+    box-shadow:0 0 0 3px rgba(29,111,255,.08);
+}
+
+textarea{
+    min-height:125px;
+    resize:vertical;
+}
+
+.form button{
+    width:100%;
+    margin-top:4px;
+}
+
+.form-note{
+    margin-top:12px;
+    text-align:center;
+    color:#929ba4;
+    font-size:11px;
+}
+
+/* CTA */
+
+.cta{
+    background:white;
+}
+
+.cta-box{
+    padding:70px 40px;
+    text-align:center;
+    color:white;
+    border-radius:26px;
+    background:
+        radial-gradient(circle at 20% 0%,rgba(84,165,255,.25),transparent 35%),
+        var(--dark);
+}
+
+.cta-box h2{
+    font-size:clamp(32px,4vw,49px);
+    letter-spacing:-2px;
+    max-width:750px;
+    margin:auto;
+    line-height:1.1;
+}
+
+.cta-box p{
+    color:#aebbc5;
+    margin:18px auto 27px;
+    max-width:590px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#09121a;
+    color:#8797a3;
+    padding:55px 0 30px;
+}
+
+.footer-grid{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    padding-bottom:35px;
+}
+
+.footer-logo{
+    color:white;
+}
+
+.footer-text{
+    max-width:370px;
+    font-size:13px;
+    margin-top:13px;
+}
+
+.footer-links{
+    display:flex;
+    gap:25px;
+    font-size:13px;
+}
+
+.footer-bottom{
+    border-top:1px solid #1a2b37;
+    padding-top:25px;
+    font-size:12px;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero-grid,
+    .about-grid,
+    .contact-grid,
+    .promise-box{
+        grid-template-columns:1fr;
+    }
+
+    .hero-grid{
+        gap:65px;
+    }
+
+    .services-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .process-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .floating{
+        left:15px;
+    }
+}
+
+@media(max-width:600px){
+
+    section{
+        padding:75px 0;
+    }
+
+    .hero{
+        padding:75px 0 90px;
+    }
+
+    h1{
+        letter-spacing:-2px;
+    }
+
+    .services-grid,
+    .process-grid,
+    .stats-grid,
+    .promise-cards,
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .stats-grid{
+        padding:20px 0;
+    }
+
+    .stat{
+        border-right:0;
+        border-bottom:1px solid var(--border);
+        padding:18px;
+    }
+
+    .stat:last-child{
+        border-bottom:0;
+    }
+
+    .promise-box{
+        padding:30px 22px;
+    }
+
+    .footer-grid,
+    .footer-bottom{
+        flex-direction:column;
+    }
+
+    .footer-links{
+        flex-wrap:wrap;
+    }
+
+    .hero-card{
+        padding:23px;
+    }
+
+    .floating{
+        position:relative;
+        bottom:auto;
+        left:auto;
+        margin-top:12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="demo-bar">
+    <strong>DEMO KONCEPT</strong> — ukázkový návrh webových stránek
+</div>
+
+<nav>
+    <div class="container nav">
+
+        <a href="#" class="logo">
+            <span class="logo-icon">N</span>
+            NOVA Services
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#sluzby">Služby</a></li>
+            <li><a href="#onas">O nás</a></li>
+            <li><a href="#postup">Jak pracujeme</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+            <li><a class="nav-cta" href="#kontakt">Nezávazná poptávka</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<header class="hero">
+<div class="container hero-grid">
+
+    <div>
+
+        <div class="eyebrow">
+            <span class="dot"></span>
+            Profesionální služby pro vaše potřeby
+        </div>
+
+        <h1>
+            Spolehlivé služby.
+            <span>Bez starostí.</span>
+        </h1>
+
+        <p class="hero-text">
+            Pomáháme zákazníkům rychle a jednoduše vyřešit to,
+            na čem jim záleží. Férový přístup, jasná komunikace
+            a řešení přizpůsobené vašim potřebám.
+        </p>
+
+        <div class="hero-buttons">
+            <a class="btn btn-blue" href="#kontakt">
+                Nezávazně poptat →
+            </a>
+
+            <a class="btn btn-light" href="#sluzby">
+                Prohlédnout služby
+            </a>
+        </div>
+
+        <div class="hero-features">
+            <span><b class="check">✓</b> Nezávazná konzultace</span>
+            <span><b class="check">✓</b> Individuální nabídka</span>
+            <span><b class="check">✓</b> Rychlá komunikace</span>
+        </div>
+
+    </div>
+
+
+    <div class="hero-card-wrap">
+
+        <div class="hero-card">
+
+            <span class="mini-label">Naše služby</span>
+
+            <h3>Jak vám můžeme pomoci?</h3>
+
+            <p>
+                Vyberte oblast, kterou právě potřebujete řešit.
+            </p>
+
+            <div class="fake-services">
+
+                <div class="fake-service">
+                    <div class="service-icon-small">◆</div>
+                    <div>
+                        <strong>Hlavní služba</strong>
+                        <span>Kompletní řešení na míru</span>
+                    </div>
+                </div>
+
+                <div class="fake-service">
+                    <div class="service-icon-small">↗</div>
+                    <div>
+                        <strong>Doplňková služba</strong>
+                        <span>Rychle a bez komplikací</span>
+                    </div>
+                </div>
+
+                <div class="fake-service">
+                    <div class="service-icon-small">✓</div>
+                    <div>
+                        <strong>Individuální řešení</strong>
+                        <span>Podle vašich požadavků</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="floating">
+            <strong>Rychlá poptávka</strong>
+            <span>Ozveme se vám co nejdříve</span>
+        </div>
+
+    </div>
+
+</div>
+</header>
+
+
+<div class="stats">
+<div class="container stats-grid">
+
+    <div class="stat">
+        <strong>01</strong>
+        <span>Jednoduchá poptávka</span>
+    </div>
+
+    <div class="stat">
+        <strong>02</strong>
+        <span>Domluva řešení</span>
+    </div>
+
+    <div class="stat">
+        <strong>03</strong>
+        <span>Realizace</span>
+    </div>
+
+    <div class="stat">
+        <strong>04</strong>
+        <span>Hotovo</span>
+    </div>
+
+</div>
+</div>
+
+
+<section class="services" id="sluzby">
+<div class="container">
+
+    <span class="section-tag">Co nabízíme</span>
+
+    <h2 class="section-title">
+        Služby postavené kolem vašich potřeb.
+    </h2>
+
+    <p class="section-sub">
+        Přehledná prezentace nabídky umožní návštěvníkovi během několika
+        sekund zjistit, s čím mu můžete pomoci.
+    </p>
+
+
+    <div class="services-grid">
+
+        <article class="service-card">
+            <div class="service-icon">◆</div>
+            <h3>Hlavní služba</h3>
+            <p>
+                Prostor pro popis hlavní služby, její výhody
+                a stručné vysvětlení toho, co zákazník získá.
+            </p>
+            <a class="service-link" href="#kontakt">Mám zájem →</a>
+        </article>
+
+        <article class="service-card">
+            <div class="service-icon">⚙</div>
+            <h3>Specializované řešení</h3>
+            <p>
+                Nabídku lze rozdělit do přehledných kategorií
+                podle skutečných služeb firmy.
+            </p>
+            <a class="service-link" href="#kontakt">Mám zájem →</a>
+        </article>
+
+        <article class="service-card">
+            <div class="service-icon">↗</div>
+            <h3>Doplňková služba</h3>
+            <p>
+                Další služba nebo produkt, který zákazníkům
+                pomáhá vyřešit konkrétní problém.
+            </p>
+            <a class="service-link" href="#kontakt">Mám zájem →</a>
+        </article>
+
+        <article class="service-card">
+            <div class="service-icon">✓</div>
+            <h3>Řešení na míru</h3>
+            <p>
+                Každý zákazník může mít jiné požadavky.
+                Nabídku proto lze připravit individuálně.
+            </p>
+            <a class="service-link" href="#kontakt">Mám zájem →</a>
+        </article>
+
+        <article class="service-card">
+            <div class="service-icon">◉</div>
+            <h3>Konzultace</h3>
+            <p>
+                Nejste si jistí správným řešením?
+                Nejprve společně probereme vaše potřeby.
+            </p>
+            <a class="service-link" href="#kontakt">Kontaktovat →</a>
+        </article>
+
+        <article class="service-card">
+            <div class="service-icon">★</div>
+            <h3>Následná péče</h3>
+            <p>
+                Spolupráce nemusí skončit realizací.
+                Pomůžeme i s dalšími požadavky.
+            </p>
+            <a class="service-link" href="#kontakt">Zjistit více →</a>
+        </article>
+
+    </div>
+
+</div>
+</section>
+
+
+<section id="onas">
+<div class="container about-grid">
+
+    <div class="about-visual">
+
+        <div class="visual-center">
+
+            <span>Jednoduchý proces</span>
+            <h3>Od požadavku k řešení</h3>
+
+            <div class="progress">
+                <div class="progress-top">
+                    <span>Poptávka</span>
+                    <span>100 %</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:100%"></div>
+                </div>
+            </div>
+
+            <div class="progress">
+                <div class="progress-top">
+                    <span>Domluva</span>
+                    <span>75 %</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:75%"></div>
+                </div>
+            </div>
+
+            <div class="progress">
+                <div class="progress-top">
+                    <span>Realizace</span>
+                    <span>50 %</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:50%"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div>
+
+        <span class="section-tag">Proč si vybrat nás</span>
+
+        <h2 class="section-title">
+            Jednoduše, férově a bez zbytečných komplikací.
+        </h2>
+
+        <p class="section-sub">
+            Dobrá služba není jen o výsledku. Důležitá je také komunikace,
+            jasné podmínky a jistota, že zákazník ví, co může očekávat.
+        </p>
+
+        <div class="about-list">
+
+            <div class="about-item">
+                <div class="about-check">✓</div>
+                <div>
+                    <strong>Jasná komunikace</strong>
+                    <p>Vždy víte, co se právě řeší a jaký bude další krok.</p>
+                </div>
+            </div>
+
+            <div class="about-item">
+                <div class="about-check">✓</div>
+                <div>
+                    <strong>Individuální přístup</strong>
+                    <p>Řešení přizpůsobíme vašemu konkrétnímu požadavku.</p>
+                </div>
+            </div>
+
+            <div class="about-item">
+                <div class="about-check">✓</div>
+                <div>
+                    <strong>Férová nabídka</strong>
+                    <p>Rozsah a cenu si odsouhlasíme před zahájením práce.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<section class="process" id="postup">
+<div class="container">
+
+    <span class="section-tag">Jak to funguje</span>
+
+    <h2 class="section-title">
+        Čtyři kroky k hotovému řešení.
+    </h2>
+
+    <p class="section-sub">
+        Zákazník přesně ví, co ho čeká od první zprávy až po dokončení.
+    </p>
+
+
+    <div class="process-grid">
+
+        <div class="process-card">
+            <div class="number">KROK 01</div>
+            <h3>Pošlete poptávku</h3>
+            <p>
+                Stručně nám popíšete, co potřebujete vyřešit.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <div class="number">KROK 02</div>
+            <h3>Domluvíme detaily</h3>
+            <p>
+                Upřesníme požadavky, rozsah a vhodný postup.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <div class="number">KROK 03</div>
+            <h3>Připravíme řešení</h3>
+            <p>
+                Pustíme se do realizace podle domluvených podmínek.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <div class="number">KROK 04</div>
+            <h3>Předáme výsledek</h3>
+            <p>
+                Po dokončení společně zkontrolujeme výsledek.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<section class="promise">
+<div class="container">
+
+    <div class="promise-box">
+
+        <div>
+            <span class="section-tag">Na čem záleží</span>
+
+            <h2 class="section-title">
+                Web má návštěvníka dovést k akci.
+            </h2>
+
+            <p class="section-sub">
+                Nestačí pouze dobře vypadat. Návštěvník musí rychle pochopit
+                nabídku, získat důvěru a jednoduše najít způsob,
+                jak firmu kontaktovat.
+            </p>
+        </div>
+
+        <div class="promise-cards">
+
+            <div class="promise-card">
+                👁️
+                <strong>Přehlednost</strong>
+                <span>Jasná struktura obsahu</span>
+            </div>
+
+            <div class="promise-card">
+                📱
+                <strong>Mobilní verze</strong>
+                <span>Pohodlné použití na telefonu</span>
+            </div>
+
+            <div class="promise-card">
+                ⚡
+                <strong>Rychlost</strong>
+                <span>Lehký a svižný web</span>
+            </div>
+
+            <div class="promise-card">
+                ✉️
+                <strong>Poptávky</strong>
+                <span>Jasná cesta ke kontaktu</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<section class="contact" id="kontakt">
+<div class="container contact-grid">
+
+    <div>
+
+        <span class="section-tag">Kontakt</span>
+
+        <h2 class="section-title">
+            Řekněte nám, co potřebujete.
+        </h2>
+
+        <p class="section-sub">
+            Vyplňte krátký formulář a ozveme se vám s návrhem dalšího postupu.
+        </p>
+
+
+        <div class="contact-info">
+
+            <div class="contact-line">
+                <div class="contact-circle">✉</div>
+                <div>
+                    <span>E-mail</span>
+                    <strong>info@vasefirma.cz</strong>
+                </div>
+            </div>
+
+            <div class="contact-line">
+                <div class="contact-circle">☎</div>
+                <div>
+                    <span>Telefon</span>
+                    <strong>+420 123 456 789</strong>
+                </div>
+            </div>
+
+            <div class="contact-line">
+                <div class="contact-circle">⌂</div>
+                <div>
+                    <span>Působnost</span>
+                    <strong>Praha a Středočeský kraj</strong>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <form class="form" onsubmit="demoSubmit(event)">
+
+        <h3>Nezávazná poptávka</h3>
+
+        <p class="form-sub">
+            Vyplnění zabere přibližně jednu minutu.
+        </p>
+
+        <div class="form-row">
+
+            <div class="field">
+                <label>Jméno</label>
+                <input type="text" placeholder="Jan Novák" required>
+            </div>
+
+            <div class="field">
+                <label>Telefon</label>
+                <input type="tel" placeholder="+420 123 456 789">
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>E-mail</label>
+            <input type="email" placeholder="jan@email.cz" required>
+        </div>
+
+        <div class="field">
+            <label>O jakou službu máte zájem?</label>
+
+            <select>
+                <option>Vyberte službu</option>
+                <option>Hlavní služba</option>
+                <option>Specializované řešení</option>
+                <option>Individuální nabídka</option>
+                <option>Konzultace</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Jak vám můžeme pomoci?</label>
+            <textarea placeholder="Stručně popište svůj požadavek..."></textarea>
+        </div>
+
+        <button class="btn btn-blue" type="submit">
+            Odeslat nezávaznou poptávku →
+        </button>
+
+        <div class="form-note">
+            DEMO formulář – data nejsou skutečně odesílána.
+        </div>
+
+    </form>
+
+</div>
+</section>
+
+
+<section class="cta">
+<div class="container">
+
+    <div class="cta-box">
+
+        <h2>
+            Potřebujete vyřešit svou poptávku?
+        </h2>
+
+        <p>
+            Napište nám a společně najdeme řešení,
+            které bude odpovídat vašim potřebám.
+        </p>
+
+        <a href="#kontakt" class="btn btn-blue">
+            Nezávazně poptat →
+        </a>
+
+    </div>
+
+</div>
+</section>
+
+
+<footer>
+<div class="container">
+
+    <div class="footer-grid">
+
+        <div>
+            <div class="logo footer-logo">
+                <span class="logo-icon">N</span>
+                NOVA Services
+            </div>
+
+            <p class="footer-text">
+                Ukázkový koncept moderního prezentačního webu
+                pro firmu poskytující služby.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <a href="#sluzby">Služby</a>
+            <a href="#onas">O nás</a>
+            <a href="#postup">Jak pracujeme</a>
+            <a href="#kontakt">Kontakt</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 NOVA Services</span>
+        <span>DEMO PROJEKT · Nejedná se o skutečnou firmu</span>
+    </div>
+
+</div>
+</footer>
+
+
+<script>
+function demoSubmit(event){
+    event.preventDefault();
+
+    const button = event.target.querySelector("button");
+
+    const original = button.innerHTML;
+
+    button.innerHTML = "✓ Demo poptávka vyplněna";
+    button.style.background = "#24a978";
+
+    setTimeout(() => {
+        button.innerHTML = original;
+        button.style.background = "";
+    }, 3000);
+}
+</script>
+
+</body>
+</html>
