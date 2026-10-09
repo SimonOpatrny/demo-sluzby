@@ -1,1541 +1,479 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>NOVA Services | Profesionální služby</title>
-<meta name="description" content="Ukázkový koncept moderního webu pro poskytovatele služeb.">
-
-<style>
-:root{
-    --dark:#0d1720;
-    --dark2:#12212c;
-    --blue:#1d6fff;
-    --blue2:#54a5ff;
-    --green:#24c78e;
-    --text:#17212b;
-    --muted:#66727f;
-    --light:#f5f8fb;
-    --white:#ffffff;
-    --border:#e3e9ef;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:Inter,Arial,Helvetica,sans-serif;
-    color:var(--text);
-    background:white;
-    line-height:1.6;
-}
-
-a{
-    text-decoration:none;
-    color:inherit;
-}
-
-.container{
-    width:min(1180px,90%);
-    margin:auto;
-}
-
-/* DEMO BAR */
-
-.demo-bar{
-    background:#081119;
-    color:#d7e2ec;
-    text-align:center;
-    padding:8px 15px;
-    font-size:13px;
-    letter-spacing:.3px;
-}
-
-.demo-bar strong{
-    color:#63aaff;
-}
-
-/* NAV */
-
-nav{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:rgba(255,255,255,.94);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid rgba(0,0,0,.06);
-}
-
-.nav{
-    height:78px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:11px;
-    font-size:21px;
-    font-weight:800;
-}
-
-.logo-icon{
-    width:38px;
-    height:38px;
-    border-radius:11px;
-    display:grid;
-    place-items:center;
-    background:linear-gradient(135deg,var(--blue),#68b8ff);
-    color:white;
-    font-weight:900;
-    box-shadow:0 8px 25px rgba(29,111,255,.25);
-}
-
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:30px;
-    list-style:none;
-    color:#48545f;
-    font-size:15px;
-    font-weight:600;
-}
-
-.nav-links a:hover{
-    color:var(--blue);
-}
-
-.nav-cta{
-    background:var(--dark);
-    color:white!important;
-    padding:11px 18px;
-    border-radius:10px;
-}
-
-/* HERO */
-
-.hero{
-    position:relative;
-    overflow:hidden;
-    padding:105px 0 115px;
-    background:
-        radial-gradient(circle at 85% 20%,rgba(84,165,255,.17),transparent 26%),
-        radial-gradient(circle at 70% 90%,rgba(36,199,142,.10),transparent 25%),
-        linear-gradient(180deg,#f9fbfd,#fff);
-}
-
-.hero::after{
-    content:"";
-    position:absolute;
-    width:500px;
-    height:500px;
-    border:1px solid rgba(29,111,255,.09);
-    border-radius:50%;
-    right:-200px;
-    top:-160px;
-}
-
-.hero-grid{
-    display:grid;
-    grid-template-columns:1.08fr .92fr;
-    gap:80px;
-    align-items:center;
-}
-
-.eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:#eaf3ff;
-    color:#1761c8;
-    border:1px solid #d3e6ff;
-    padding:7px 12px;
-    border-radius:50px;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:24px;
-}
-
-.dot{
-    width:8px;
-    height:8px;
-    background:var(--green);
-    border-radius:50%;
-}
-
-h1{
-    font-size:clamp(45px,6vw,72px);
-    line-height:1.04;
-    letter-spacing:-3.5px;
-    color:#101b25;
-    max-width:720px;
-}
-
-h1 span{
-    color:var(--blue);
-}
-
-.hero-text{
-    max-width:640px;
-    font-size:18px;
-    color:#66727f;
-    margin:26px 0 33px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:13px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    display:inline-flex;
-    justify-content:center;
-    align-items:center;
-    gap:9px;
-    padding:14px 21px;
-    border-radius:11px;
-    font-weight:700;
-    transition:.25s;
-    cursor:pointer;
-    border:none;
-    font-size:15px;
-}
-
-.btn-blue{
-    background:var(--blue);
-    color:white;
-    box-shadow:0 12px 28px rgba(29,111,255,.23);
-}
-
-.btn-blue:hover{
-    background:#105fdc;
-    transform:translateY(-2px);
-}
-
-.btn-light{
-    background:white;
-    border:1px solid var(--border);
-}
-
-.btn-light:hover{
-    border-color:#b7c1cb;
-}
-
-.hero-features{
-    display:flex;
-    gap:23px;
-    flex-wrap:wrap;
-    margin-top:33px;
-    color:#64717d;
-    font-size:13px;
-    font-weight:600;
-}
-
-.check{
-    color:var(--green);
-    font-weight:900;
-}
-
-/* HERO CARD */
-
-.hero-card-wrap{
-    position:relative;
-}
-
-.hero-card{
-    position:relative;
-    z-index:2;
-    background:white;
-    border:1px solid #e5ebf1;
-    border-radius:24px;
-    padding:31px;
-    box-shadow:0 35px 80px rgba(25,48,69,.13);
-}
-
-.mini-label{
-    font-size:12px;
-    color:#88939d;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    font-weight:800;
-}
-
-.hero-card h3{
-    font-size:25px;
-    margin:7px 0 7px;
-}
-
-.hero-card > p{
-    color:#76818c;
-    font-size:14px;
-}
-
-.fake-services{
-    margin-top:25px;
-    display:grid;
-    gap:11px;
-}
-
-.fake-service{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    border:1px solid #e9edf1;
-    padding:15px;
-    border-radius:13px;
-}
-
-.service-icon-small{
-    min-width:43px;
-    height:43px;
-    border-radius:10px;
-    display:grid;
-    place-items:center;
-    background:#edf5ff;
-    font-size:18px;
-}
-
-.fake-service strong{
-    display:block;
-    font-size:14px;
-}
-
-.fake-service span{
-    color:#8a949d;
-    font-size:12px;
-}
-
-.floating{
-    position:absolute;
-    z-index:4;
-    bottom:-28px;
-    left:-35px;
-    background:var(--dark);
-    color:white;
-    padding:17px 20px;
-    border-radius:14px;
-    box-shadow:0 18px 45px rgba(0,0,0,.2);
-}
-
-.floating strong{
-    display:block;
-    font-size:19px;
-}
-
-.floating span{
-    font-size:12px;
-    color:#aebbc5;
-}
-
-/* STATS */
-
-.stats{
-    border-bottom:1px solid var(--border);
-    border-top:1px solid var(--border);
-}
-
-.stats-grid{
-    min-height:120px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    align-items:center;
-}
-
-.stat{
-    text-align:center;
-    border-right:1px solid var(--border);
-}
-
-.stat:last-child{
-    border:none;
-}
-
-.stat strong{
-    display:block;
-    font-size:24px;
-    color:#15212b;
-}
-
-.stat span{
-    font-size:13px;
-    color:#7a8691;
-}
-
-/* SECTION */
-
-section{
-    padding:105px 0;
-}
-
-.section-tag{
-    display:inline-block;
-    color:var(--blue);
-    text-transform:uppercase;
-    font-weight:800;
-    font-size:12px;
-    letter-spacing:1.7px;
-    margin-bottom:9px;
-}
-
-.section-title{
-    font-size:clamp(34px,4.5vw,51px);
-    line-height:1.08;
-    letter-spacing:-2px;
-    max-width:720px;
-}
-
-.section-sub{
-    color:#71808d;
-    margin-top:16px;
-    max-width:650px;
-    font-size:16px;
-}
-
-/* SERVICES */
-
-.services{
-    background:var(--light);
-}
-
-.services-grid{
-    margin-top:50px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.service-card{
-    background:white;
-    border:1px solid #e3e9ef;
-    padding:30px;
-    border-radius:18px;
-    transition:.3s;
-}
-
-.service-card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 20px 45px rgba(25,48,69,.09);
-    border-color:#cbd7e2;
-}
-
-.service-icon{
-    width:53px;
-    height:53px;
-    border-radius:13px;
-    background:#eaf3ff;
-    color:var(--blue);
-    display:grid;
-    place-items:center;
-    font-size:22px;
-    margin-bottom:23px;
-}
-
-.service-card h3{
-    font-size:19px;
-    margin-bottom:8px;
-}
-
-.service-card p{
-    color:#74808b;
-    font-size:14px;
-}
-
-.service-link{
-    display:inline-block;
-    color:var(--blue);
-    margin-top:18px;
-    font-size:13px;
-    font-weight:800;
-}
-
-/* ABOUT */
-
-.about-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:80px;
-    align-items:center;
-}
-
-.about-visual{
-    min-height:490px;
-    border-radius:25px;
-    position:relative;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 20% 20%,rgba(84,165,255,.25),transparent 30%),
-        linear-gradient(135deg,#102333,#183d56);
-}
-
-.visual-center{
-    position:absolute;
-    inset:50% auto auto 50%;
-    transform:translate(-50%,-50%);
-    width:72%;
-    background:rgba(255,255,255,.09);
-    border:1px solid rgba(255,255,255,.14);
-    backdrop-filter:blur(10px);
-    padding:30px;
-    border-radius:20px;
-    color:white;
-}
-
-.visual-center span{
-    color:#90a9bb;
-    font-size:12px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-}
-
-.visual-center h3{
-    margin:7px 0 20px;
-    font-size:24px;
-}
-
-.progress{
-    margin:17px 0;
-}
-
-.progress-top{
-    display:flex;
-    justify-content:space-between;
-    font-size:12px;
-    margin-bottom:6px;
-}
-
-.progress-bar{
-    height:6px;
-    background:rgba(255,255,255,.12);
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.progress-fill{
-    height:100%;
-    background:#54a5ff;
-    border-radius:20px;
-}
-
-.about-list{
-    margin-top:30px;
-    display:grid;
-    gap:18px;
-}
-
-.about-item{
-    display:flex;
-    gap:14px;
-}
-
-.about-check{
-    flex:none;
-    width:28px;
-    height:28px;
-    display:grid;
-    place-items:center;
-    border-radius:50%;
-    background:#e9fbf4;
-    color:#159b6d;
-    font-weight:900;
-}
-
-.about-item strong{
-    display:block;
-    margin-bottom:2px;
-}
-
-.about-item p{
-    color:#77838e;
-    font-size:14px;
-}
-
-/* PROCESS */
-
-.process{
-    background:var(--dark);
-    color:white;
-}
-
-.process .section-title{
-    color:white;
-}
-
-.process .section-sub{
-    color:#a7b3bc;
-}
-
-.process-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    margin-top:55px;
-    gap:18px;
-}
-
-.process-card{
-    padding:27px;
-    border:1px solid #263b49;
-    border-radius:17px;
-    background:#11212c;
-}
-
-.number{
-    font-size:12px;
-    color:#62aaff;
-    font-weight:900;
-    margin-bottom:35px;
-}
-
-.process-card h3{
-    margin-bottom:8px;
-}
-
-.process-card p{
-    color:#98a7b1;
-    font-size:13px;
-}
-
-/* TESTIMONIAL STYLE / WITHOUT FAKE REVIEW */
-
-.promise{
-    background:white;
-}
-
-.promise-box{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:70px;
-    align-items:center;
-    padding:55px;
-    background:#f5f8fb;
-    border:1px solid #e2e8ee;
-    border-radius:25px;
-}
-
-.promise-cards{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.promise-card{
-    background:white;
-    padding:20px;
-    border:1px solid #e1e7ec;
-    border-radius:14px;
-}
-
-.promise-card strong{
-    display:block;
-    margin-top:9px;
-}
-
-.promise-card span{
-    color:#7c8790;
-    font-size:12px;
-}
-
-/* CONTACT */
-
-.contact{
-    background:#f4f7fa;
-}
-
-.contact-grid{
-    display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    gap:65px;
-    align-items:start;
-}
-
-.contact-info{
-    margin-top:32px;
-    display:grid;
-    gap:16px;
-}
-
-.contact-line{
-    display:flex;
-    gap:13px;
-    align-items:center;
-}
-
-.contact-circle{
-    width:43px;
-    height:43px;
-    flex:none;
-    border-radius:11px;
-    background:white;
-    border:1px solid var(--border);
-    display:grid;
-    place-items:center;
-}
-
-.contact-line span{
-    display:block;
-    font-size:12px;
-    color:#8a949e;
-}
-
-.contact-line strong{
-    font-size:14px;
-}
-
-.form{
-    background:white;
-    border:1px solid #dfe6ec;
-    padding:32px;
-    border-radius:20px;
-    box-shadow:0 20px 55px rgba(32,55,75,.07);
-}
-
-.form h3{
-    font-size:23px;
-    margin-bottom:5px;
-}
-
-.form-sub{
-    color:#7c8791;
-    font-size:13px;
-    margin-bottom:24px;
-}
-
-.form-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:13px;
-}
-
-.field{
-    margin-bottom:13px;
-}
-
-label{
-    display:block;
-    font-size:12px;
-    font-weight:700;
-    margin-bottom:6px;
-}
-
-input,select,textarea{
-    width:100%;
-    padding:13px 14px;
-    border:1px solid #dce3e9;
-    border-radius:9px;
-    font:inherit;
-    font-size:14px;
-    outline:none;
-    background:white;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-    border-color:#73adff;
-    box-shadow:0 0 0 3px rgba(29,111,255,.08);
-}
-
-textarea{
-    min-height:125px;
-    resize:vertical;
-}
-
-.form button{
-    width:100%;
-    margin-top:4px;
-}
-
-.form-note{
-    margin-top:12px;
-    text-align:center;
-    color:#929ba4;
-    font-size:11px;
-}
-
-/* CTA */
-
-.cta{
-    background:white;
-}
-
-.cta-box{
-    padding:70px 40px;
-    text-align:center;
-    color:white;
-    border-radius:26px;
-    background:
-        radial-gradient(circle at 20% 0%,rgba(84,165,255,.25),transparent 35%),
-        var(--dark);
-}
-
-.cta-box h2{
-    font-size:clamp(32px,4vw,49px);
-    letter-spacing:-2px;
-    max-width:750px;
-    margin:auto;
-    line-height:1.1;
-}
-
-.cta-box p{
-    color:#aebbc5;
-    margin:18px auto 27px;
-    max-width:590px;
-}
-
-/* FOOTER */
-
-footer{
-    background:#09121a;
-    color:#8797a3;
-    padding:55px 0 30px;
-}
-
-.footer-grid{
-    display:flex;
-    justify-content:space-between;
-    gap:30px;
-    padding-bottom:35px;
-}
-
-.footer-logo{
-    color:white;
-}
-
-.footer-text{
-    max-width:370px;
-    font-size:13px;
-    margin-top:13px;
-}
-
-.footer-links{
-    display:flex;
-    gap:25px;
-    font-size:13px;
-}
-
-.footer-bottom{
-    border-top:1px solid #1a2b37;
-    padding-top:25px;
-    font-size:12px;
-    display:flex;
-    justify-content:space-between;
-    gap:20px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .hero-grid,
-    .about-grid,
-    .contact-grid,
-    .promise-box{
-        grid-template-columns:1fr;
-    }
-
-    .hero-grid{
-        gap:65px;
-    }
-
-    .services-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .process-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .floating{
-        left:15px;
-    }
-}
-
-@media(max-width:600px){
-
-    section{
-        padding:75px 0;
-    }
-
-    .hero{
-        padding:75px 0 90px;
-    }
-
-    h1{
-        letter-spacing:-2px;
-    }
-
-    .services-grid,
-    .process-grid,
-    .stats-grid,
-    .promise-cards,
-    .form-row{
-        grid-template-columns:1fr;
-    }
-
-    .stats-grid{
-        padding:20px 0;
-    }
-
-    .stat{
-        border-right:0;
-        border-bottom:1px solid var(--border);
-        padding:18px;
-    }
-
-    .stat:last-child{
-        border-bottom:0;
-    }
-
-    .promise-box{
-        padding:30px 22px;
-    }
-
-    .footer-grid,
-    .footer-bottom{
-        flex-direction:column;
-    }
-
-    .footer-links{
-        flex-wrap:wrap;
-    }
-
-    .hero-card{
-        padding:23px;
-    }
-
-    .floating{
-        position:relative;
-        bottom:auto;
-        left:auto;
-        margin-top:12px;
-    }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#111d30">
+  <meta name="description" content="NOVA Services – ukázková prémiová prezentace společnosti poskytující profesionální služby. Jasná nabídka, promyšlený proces a snadná poptávka.">
+  <title>NOVA Services — Kvalitní služby, jasná domluva</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+  :root{
+    --ink:#172437; --deep:#101c2d; --deep2:#1a2b44; --primary:#3568ed; --primary-dark:#2151ce;
+    --white:#fff; --canvas:#f8f9fb; --cloud:#f0f3f7; --mist:#e8edf4; --line:#e3e8ef;
+    --muted:#69768a; --sub:#46566c; --teal:#4fc4b4; --ease:cubic-bezier(.22,1,.36,1);
+    --wrap:1220px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:106px}
+  body{margin:0;min-width:320px;background:var(--white);color:var(--ink);font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  body.menu-open{overflow:hidden}
+  button,input,select,textarea{font:inherit}
+  button{cursor:pointer}
+  a{color:inherit;text-decoration:none}
+  svg{display:block;flex:none}
+  img{max-width:100%}
+  ::selection{background:#c2d3ff;color:#102043}
+  :focus-visible{outline:3px solid #92b4ff;outline-offset:4px}
+  .wrap{width:min(var(--wrap),calc(100% - 88px));margin-inline:auto}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .skip-link{position:fixed;top:-100px;left:15px;z-index:10010;background:white;padding:12px 20px;box-shadow:0 10px 30px #0002}
+  .skip-link:focus{top:16px}
+  .icon{width:22px;height:22px;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .eyebrow{display:inline-flex;align-items:center;gap:12px;margin:0 0 22px;color:var(--primary);text-transform:uppercase;letter-spacing:.17em;font-size:11px;font-weight:800}
+  .eyebrow::before{content:"";width:27px;height:1px;background:currentColor}
+  .heading{margin:0;font:800 clamp(38px,4.35vw,60px)/1.13 'Manrope',sans-serif;letter-spacing:-.065em;color:var(--ink)}
+  .lead{max-width:670px;margin:21px 0 0;color:var(--muted);font-size:16px;line-height:1.85}
+  .section{padding:118px 0}
+  .section-head{display:flex;align-items:end;justify-content:space-between;gap:50px}
+  .section-head .lead{max-width:395px;margin-bottom:6px}
+  .button{display:inline-flex;align-items:center;justify-content:center;gap:25px;min-height:57px;padding:0 24px;border:1px solid transparent;border-radius:5px;font-size:13px;font-weight:700;line-height:1.2;white-space:nowrap;transition:transform .3s var(--ease),background .25s,border-color .25s,box-shadow .3s var(--ease);position:relative}
+  .button .icon{width:17px;height:17px;transition:transform .3s var(--ease)}
+  .button:hover{transform:translateY(-2px)}
+  .button:hover .icon{transform:translate(4px,-1px)}
+  .button-primary{background:var(--primary);color:white;box-shadow:0 13px 25px rgba(21,83,220,.18)}
+  .button-primary:hover{background:var(--primary-dark);box-shadow:0 17px 29px rgba(21,83,220,.23)}
+  .button-outline{background:transparent;color:var(--ink);border-color:#cfd7e3}
+  .button-outline:hover{border-color:#75859c;background:#f5f7fa}
+  /* SVG symbol sprite must remain hidden */
+  .symbols{position:absolute;width:0;height:0;overflow:hidden}
+  /* utility / navigation */
+  .demo-bar{background:#0b1523;color:#b9c8d9;text-align:center;padding:9px 16px;font-size:11px;letter-spacing:.04em}
+  .demo-bar strong{font-weight:800;color:#edf3fb;letter-spacing:.16em;margin-right:9px}
+  .scroll-meter{position:fixed;top:0;left:0;height:3px;width:100%;z-index:1100;background:var(--primary);transform:scaleX(0);transform-origin:left;pointer-events:none}
+  .site-nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.96);border-bottom:1px solid #ecf0f4;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:box-shadow .3s}
+  .site-nav.scrolled{box-shadow:0 12px 35px rgba(21,36,56,.075)}
+  .nav-inner{height:84px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+  .brand{display:inline-flex;align-items:center;gap:12px;font:800 21px/1 'Manrope',sans-serif;letter-spacing:-.057em;white-space:nowrap}
+  .brand strong{font-weight:800}
+  .brand em{font-weight:500;font-style:normal;color:#6f7e90}
+  .brand-symbol{display:grid;place-items:center;width:41px;height:41px;background:var(--deep);color:white;border-radius:4px;position:relative}
+  .brand-symbol .icon{width:23px;height:23px;stroke-width:2}
+  .nav-list{display:flex;align-items:center;gap:36px;margin:0;padding:0;list-style:none}
+  .nav-list a{font-size:12px;font-weight:700;color:#57677a;transition:color .25s;position:relative}
+  .nav-list a:not(.nav-button)::after{content:"";position:absolute;bottom:-9px;left:0;height:2px;width:100%;background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+  .nav-list a:hover,.nav-list a.active{color:var(--ink)}
+  .nav-list a:not(.nav-button):hover::after,.nav-list a.active:not(.nav-button)::after{transform:scaleX(1)}
+  .nav-list .nav-button{display:inline-flex;align-items:center;gap:10px;background:var(--deep);color:white;padding:14px 19px;border-radius:4px}
+  .nav-button .icon{width:15px;height:15px}
+  .nav-list .nav-button:hover{background:var(--primary);color:white}
+  .menu-toggle{display:none;border:1px solid var(--line);background:white;padding:0;width:44px;height:44px;border-radius:5px;align-items:center;justify-content:center;flex-direction:column;gap:6px;position:relative;z-index:1001}
+  .menu-toggle span{width:19px;height:2px;border-radius:2px;background:var(--deep);transition:transform .3s,opacity .3s}
+  .menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(4px) rotate(45deg)}
+  .menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-4px) rotate(-45deg)}
+  /* Hero composition */
+  .hero{background:var(--deep);color:#fff;position:relative;isolation:isolate;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 84% 22%,rgba(65,101,180,.25),transparent 45%),linear-gradient(126deg,#101c2d 5%,#162842 66%,#152a48 100%)}
+  .hero::after{content:"";position:absolute;right:-190px;top:-280px;border:1px solid rgba(166,193,240,.12);width:690px;height:690px;border-radius:50%;box-shadow:0 0 0 90px rgba(255,255,255,.014),0 0 0 190px rgba(255,255,255,.009);pointer-events:none}
+  .hero-grid{min-height:680px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:65px;align-items:center;padding-block:105px 112px}
+  .hero-copy{position:relative;z-index:2}
+  .hero-kicker{display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.16em;font-weight:700;color:#b2c4da;text-transform:uppercase;margin-bottom:27px}
+  .hero-kicker::before{content:"";width:30px;height:1px;background:var(--teal)}
+  .hero h1{margin:0;max-width:700px;font:800 clamp(49px,5.45vw,79px)/1.065 'Manrope',sans-serif;letter-spacing:-.074em;text-wrap:balance}
+  .hero h1 .accent{color:#a6c4ff}
+  .hero-description{max-width:505px;color:#b6c3d2;font-size:16px;line-height:1.9;margin:32px 0 0}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:33px}
+  .hero .button-outline{color:white;border-color:#54647b;background:rgba(255,255,255,.02)}
+  .hero .button-outline:hover{background:#ffffff18;border-color:#8493aa}
+  .hero-features{display:flex;gap:19px;flex-wrap:wrap;margin-top:44px;color:#aebcd0;font-size:11px;font-weight:600}
+  .hero-features span{display:inline-flex;align-items:center;gap:7px}
+  .hero-features .icon{width:15px;height:15px;color:#73dec9}
+  .hero-art{position:relative;min-height:505px;display:grid;place-items:center;perspective:1200px}
+  .art-lines{position:absolute;inset:-12px -25px -15px 20px;opacity:.45;background-image:linear-gradient(#a2b4ce1c 1px,transparent 1px),linear-gradient(90deg,#a2b4ce1c 1px,transparent 1px);background-size:41px 41px;mask-image:radial-gradient(ellipse,#000 20%,transparent 73%)}
+  .art-outline{position:absolute;width:360px;height:360px;border:1px solid rgba(170,202,243,.13);border-radius:50%;left:50%;top:48%;transform:translate(-50%,-50%);box-shadow:0 0 0 72px rgba(255,255,255,.018),0 0 0 145px rgba(255,255,255,.011)}
+  .art-sheet{width:min(100%,480px);min-height:449px;border-radius:7px;background:#f7f8f9;color:var(--ink);padding:34px;position:relative;box-shadow:0 38px 90px #05112470;transform:rotate(2deg);transition:transform .8s var(--ease);overflow:hidden}
+  .hero-art:hover .art-sheet{transform:rotate(0deg) translateY(-5px)}
+  .art-sheet:before{content:"";position:absolute;left:0;top:0;width:100%;height:7px;background:var(--primary)}
+  .sheet-top{display:flex;justify-content:space-between;gap:15px;align-items:center;border-bottom:1px solid #d9e0e8;padding-bottom:20px}
+  .sheet-top .mark{font:800 22px 'Manrope',sans-serif;letter-spacing:-.06em}
+  .sheet-top .edition{color:#78869a;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:800}
+  .sheet-caption{margin-top:38px;font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:#7a8795;font-weight:800}
+  .sheet-heading{font:800 clamp(30px,3vw,42px)/1.11 'Manrope',sans-serif;letter-spacing:-.06em;max-width:390px;margin:14px 0 27px}
+  .sheet-accent{color:var(--primary)}
+  .sheet-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .sheet-item{min-height:91px;background:#e9edf3;border:1px solid #dfe5ed;border-radius:3px;padding:15px;display:flex;flex-direction:column;justify-content:space-between}
+  .sheet-item small{font-size:10px;color:#7b899b;font-weight:700}
+  .sheet-item span{font-size:13px;font-weight:800;letter-spacing:-.02em}
+  .sheet-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:23px;font-size:11px;font-weight:700}
+  .sheet-footer .icon{color:var(--primary);width:23px;height:23px}
+  .art-tag{position:absolute;left:-28px;bottom:10px;z-index:3;padding:19px 24px;background:#203657;color:#f4f8ff;box-shadow:0 18px 44px #07101e60;border:1px solid #5477ab50;animation:tagHover 5s ease-in-out infinite}
+  .art-tag strong{display:block;font:700 14px 'Manrope',sans-serif;letter-spacing:-.02em}
+  .art-tag small{font-size:11px;color:#b0c0d5}
+  @keyframes tagHover{50%{transform:translateY(-9px)}}
+  .hero-index{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);white-space:nowrap;font-size:9px;letter-spacing:.2em;color:#92a7c1;text-transform:uppercase}
+  /* Four steps strip */
+  .steps-strip{background:#fff;border-bottom:1px solid var(--line)}
+  .steps-strip-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+  .strip-item{display:flex;align-items:center;gap:17px;padding:31px 18px;border-right:1px solid var(--line)}
+  .strip-item:first-child{padding-left:0}
+  .strip-item:last-child{border-right:0}
+  .strip-num{color:var(--primary);font:700 12px 'Manrope',sans-serif}
+  .strip-item span:last-child{font:700 12px 'DM Sans',sans-serif;color:#47576c}
+  /* Services */
+  .services{background:var(--canvas)}
+  .services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:59px}
+  .service-card{display:flex;flex-direction:column;min-height:295px;background:#fff;border:1px solid var(--line);padding:34px;border-radius:5px;position:relative;overflow:hidden;transition:box-shadow .45s var(--ease),transform .45s var(--ease),border-color .35s}
+  .service-card::before{content:"";position:absolute;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:left;background:var(--primary);transition:transform .55s var(--ease)}
+  .service-card:hover{transform:translateY(-6px);border-color:#ccd8ee;box-shadow:0 23px 40px rgba(27,48,79,.075)}
+  .service-card:hover::before{transform:scaleX(1)}
+  .service-card-top{display:flex;justify-content:space-between;align-items:start}
+  .service-icon{display:grid;place-items:center;width:49px;height:49px;border:1px solid #dce5f4;background:#f2f5fc;color:var(--primary);border-radius:4px}
+  .service-icon .icon{width:23px;height:23px}
+  .service-no{font:700 11px 'Manrope',sans-serif;color:#a0adbd;letter-spacing:.1em}
+  .service-card h3{margin:28px 0 10px;font:800 19px/1.25 'Manrope',sans-serif;letter-spacing:-.04em}
+  .service-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+  .service-link{display:inline-flex;align-items:center;gap:9px;margin-top:auto;padding-top:25px;color:var(--primary);font-size:12px;font-weight:800}
+  .service-link .icon{width:15px;height:15px;transition:transform .25s}
+  .service-link:hover .icon{transform:translate(4px,-2px)}
+  /* About */
+  .about-layout{display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);gap:105px;align-items:center}
+  .about-visual{min-height:524px;background:#ebf0f6;position:relative;overflow:hidden;border-radius:4px;display:grid;place-items:center;isolation:isolate}
+  .about-visual::before{content:"";position:absolute;inset:-30% -15%;background:linear-gradient(130deg,#e9eff6,#dce6f3);transform:rotate(-13deg);z-index:-1}
+  .about-visual::after{content:"";position:absolute;inset:0;opacity:.47;z-index:-1;background-image:linear-gradient(#9aabc31b 1px,transparent 1px),linear-gradient(90deg,#9aabc31b 1px,transparent 1px);background-size:40px 40px}
+  .visual-frame{width:76%;background:#fff;border:1px solid #d7e2ec;box-shadow:0 30px 55px rgba(31,65,105,.11);padding:30px;position:relative}
+  .visual-frame::before{content:"";position:absolute;inset:-16px -16px auto auto;width:65px;height:65px;border-top:2px solid var(--primary);border-right:2px solid var(--primary)}
+  .frame-top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:20px}
+  .frame-top strong{font:800 19px 'Manrope',sans-serif;letter-spacing:-.04em}
+  .frame-top small{color:#91a0b2;font:800 10px 'Manrope',sans-serif;letter-spacing:.13em}
+  .frame-label{margin:26px 0 19px;font-size:11px;color:#6b7b90;text-transform:uppercase;letter-spacing:.15em;font-weight:800}
+  .process-row{display:flex;gap:15px;align-items:center;padding:14px 0;border-top:1px solid #e8edf3;color:#344359;font-size:12px;font-weight:700}
+  .process-row b{display:grid;place-items:center;width:27px;height:27px;background:#ecf2ff;color:var(--primary);border-radius:50%;font-size:11px}
+  .process-row .icon{margin-left:auto;width:16px;height:16px;color:#8da1b9}
+  .visual-bottom{display:flex;justify-content:space-between;gap:15px;margin-top:25px;padding-top:18px;border-top:1px solid var(--line);color:#718198;font-size:11px}
+  .visual-bottom strong{color:var(--primary);font-weight:800}
+  .visual-aside{position:absolute;bottom:31px;right:19px;background:var(--deep);color:white;padding:18px 21px;font-size:11px;font-weight:700;letter-spacing:.01em;box-shadow:0 15px 35px #192c4845}
+  .about-list{display:grid;gap:24px;margin-top:37px}
+  .about-point{display:flex;align-items:start;gap:17px}
+  .about-point .icon{width:18px;height:18px;margin-top:5px;color:var(--primary)}
+  .about-point strong{display:block;font:800 15px 'Manrope',sans-serif;letter-spacing:-.03em}
+  .about-point p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.75}
+  /* Process */
+  .process{background:var(--deep);color:#fff;position:relative;overflow:hidden}
+  .process::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 85% 5%,#3979c019,transparent 49%);pointer-events:none}
+  .process .heading{color:#fff}
+  .process .lead{color:#a8b7c9}
+  .process .eyebrow{color:#86aaff}
+  .process-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:70px;position:relative}
+  .process-grid::before{content:"";position:absolute;left:12%;right:12%;top:30px;border-top:1px dashed #546880;opacity:.65}
+  .process-card{position:relative;padding:0 7px 10px}
+  .process-marker{display:grid;place-items:center;width:60px;height:60px;background:#203451;color:#aac4ed;border:1px solid #50607a;border-radius:50%;font:700 15px 'Manrope',sans-serif;position:relative;z-index:2;margin-bottom:37px;transition:background .35s,border-color .35s,transform .35s}
+  .process-card:hover .process-marker{background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-4px)}
+  .process-card h3{margin:0 0 12px;color:#fff;font:800 18px/1.25 'Manrope',sans-serif;letter-spacing:-.035em}
+  .process-card p{margin:0;color:#9faec2;font-size:13px;line-height:1.85}
+  /* Principles */
+  .principles{background:white}
+  .principle-box{display:grid;grid-template-columns:.87fr 1.13fr;gap:60px;align-items:center;padding:60px;border:1px solid var(--line);background:#f5f7fa;border-radius:5px}
+  .principle-box .lead{max-width:465px}
+  .principle-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .principle{background:#fff;padding:25px;border:1px solid #e4e9f0;min-height:150px;transition:box-shadow .3s,transform .3s}
+  .principle:hover{box-shadow:0 12px 25px #182a4610;transform:translateY(-3px)}
+  .principle .icon{color:var(--primary);width:22px;height:22px}
+  .principle strong{display:block;font:800 14px 'Manrope',sans-serif;letter-spacing:-.035em;margin-top:16px}
+  .principle span{font-size:11px;color:var(--muted)}
+  /* FAQ */
+  .faq{background:var(--canvas)}
+  .faq-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:90px}
+  .faq .heading{font-size:clamp(33px,3.8vw,48px)}
+  .faq-list{border-top:1px solid #dce4ed}
+  .faq-item{border-bottom:1px solid #dce4ed}
+  .faq-item summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:24px;align-items:center;padding:22px 0;font-weight:700;font-size:15px}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary .icon{width:19px;height:19px;color:var(--primary);transition:transform .3s}
+  .faq-item[open] summary .icon{transform:rotate(45deg)}
+  .faq-item p{font-size:13px;color:var(--muted);max-width:590px;line-height:1.9;margin:0;padding:0 38px 23px 0}
+  /* Contact */
+  .contact{background:#fff}
+  .contact-layout{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:95px;align-items:start}
+  .contact-layout>*{min-width:0}.contact-item strong{overflow-wrap:anywhere}
+  .contact-points{display:grid;gap:29px;margin-top:49px}
+  .contact-item{display:flex;align-items:center;gap:17px}
+  .contact-item .contact-symbol{display:grid;place-items:center;width:48px;height:48px;background:#f0f4fa;border:1px solid var(--line);color:var(--primary);border-radius:4px}
+  .contact-symbol .icon{width:21px;height:21px}
+  .contact-item small{display:block;color:#8998aa;font-size:11px;font-weight:600}
+  .contact-item strong{display:block;font-size:14px;margin-top:2px}
+  .contact-item a:hover{color:var(--primary)}
+  .contact-note{font-size:11px;color:#8090a4;line-height:1.8;max-width:420px;margin-top:38px}
+  .contact-form{background:#fff;border:1px solid #dce5ed;box-shadow:0 25px 75px rgba(32,54,89,.09);padding:44px;border-radius:5px}
+  .form-head{display:flex;align-items:start;justify-content:space-between;gap:15px;margin-bottom:32px}
+  .form-head h3{font:800 24px/1.2 'Manrope',sans-serif;letter-spacing:-.045em;margin:0 0 8px}
+  .form-head p{font-size:12px;color:var(--muted);margin:0}
+  .form-head .icon{color:var(--primary);width:27px;height:27px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+  .field{margin-bottom:22px}
+  .field label{display:block;color:#39485f;font-size:12px;font-weight:800;margin-bottom:9px}
+  .field label span{color:#9aa8b9;font-size:11px;font-weight:500}
+  .field input,.field select,.field textarea{width:100%;border:1px solid #dbe3ed;border-radius:3px;background:#fafbfd;color:var(--ink);padding:14px 15px;font-size:13px;outline:none;transition:background .2s,border-color .2s,box-shadow .2s}
+  .field input::placeholder,.field textarea::placeholder{color:#9eacbc}
+  .field input:focus,.field textarea:focus,.field select:focus{background:white;border-color:#6f97f0;box-shadow:0 0 0 3px rgba(53,104,237,.10)}
+  .field textarea{min-height:136px;resize:vertical}
+  .form-submit{width:100%;justify-content:space-between}
+  .form-disclaimer{font-size:11px;color:#8995a5;line-height:1.7;text-align:center;margin:16px 0 0}
+  .form-response{display:none;background:#eef4ff;color:#19458d;border:1px solid #cbdaf8;font-size:12px;padding:14px;margin-top:18px;line-height:1.8}
+  .form-response.show{display:block}
+  /* CTA and footer */
+  .final-cta{padding:0 0 114px}
+  .cta-inner{background:var(--primary);color:white;display:flex;align-items:center;justify-content:space-between;gap:30px;padding:54px 62px;position:relative;overflow:hidden;border-radius:5px}
+  .cta-inner::after{content:"";position:absolute;width:340px;height:340px;border:1px solid #ffffff45;right:-210px;top:-160px;border-radius:50%;box-shadow:0 0 0 60px #ffffff12,0 0 0 120px #ffffff09;pointer-events:none}
+  .cta-inner h2{font:800 clamp(28px,3.3vw,44px)/1.14 'Manrope',sans-serif;letter-spacing:-.058em;max-width:650px;margin:0}
+  .cta-inner p{font-size:13px;color:#dfeaff;margin:12px 0 0}
+  .button-white{background:#fff;color:#17345f;border-color:white;position:relative;z-index:1}
+  .button-white:hover{background:#ebf1ff}
+  .site-footer{background:#101b2b;color:#c0ccdc;padding:72px 0 30px}
+  .footer-top{display:flex;justify-content:space-between;gap:70px;padding-bottom:56px}
+  .footer-top .brand{color:white}
+  .footer-top .brand em{color:#a4b3c5}
+  .footer-top .brand-symbol{background:#2e5dd1}
+  .footer-summary{max-width:355px;color:#8fa0b6;font-size:13px;line-height:1.9;margin:20px 0 0}
+  .footer-links{display:flex;flex-wrap:wrap;align-content:start;gap:14px 32px;margin-top:12px;font-size:12px;font-weight:700}
+  .footer-links a:hover{color:white}
+  .footer-bottom{display:flex;justify-content:space-between;gap:20px;border-top:1px solid #293951;padding-top:26px;color:#8d9cb0;font-size:11px}
+  .back-top{position:fixed;right:24px;bottom:24px;z-index:950;width:48px;height:48px;background:#fff;border:1px solid #d6e1ed;color:var(--primary);box-shadow:0 8px 25px rgba(30,50,80,.13);display:grid;place-items:center;border-radius:5px;opacity:0;visibility:hidden;transform:translateY(15px);transition:opacity .3s,visibility .3s,transform .3s}
+  .back-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+  .back-top .icon{width:20px;height:20px}
+  /* motion: never hide the content without JS */
+  .motion-ready .reveal{opacity:0;transform:translateY(30px);transition:opacity .85s var(--ease),transform .9s var(--ease);transition-delay:var(--delay,0ms)}
+  .motion-ready .reveal.visible{opacity:1;transform:none}
+  .hero-copy>*{animation:hero-in 1s var(--ease) both}
+  .hero-copy>*:nth-child(2){animation-delay:.13s}.hero-copy>*:nth-child(3){animation-delay:.23s}.hero-copy>*:nth-child(4){animation-delay:.34s}.hero-copy>*:nth-child(5){animation-delay:.44s}
+  .hero-art{animation:hero-art-in 1.1s var(--ease) .25s both}
+  @keyframes hero-in{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  @keyframes hero-art-in{from{opacity:0;transform:translate(22px,15px)}to{opacity:1;transform:none}}
+  @media(max-width:1150px){.hero-grid{gap:38px}.art-sheet{padding:26px}.about-layout{gap:65px}.contact-layout{gap:55px}.nav-list{gap:23px}}
+  @media(max-width:930px){
+    .wrap{width:calc(100% - 48px)}.nav-inner{height:72px}
+    .menu-toggle{display:flex}
+    .nav-list{position:absolute;top:100%;left:0;right:0;display:flex;flex-direction:column;align-items:stretch;gap:0;background:#fff;padding:17px 24px 28px;box-shadow:0 24px 40px #12243c24;border-bottom:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(-12px);pointer-events:none;transition:opacity .25s,visibility .25s,transform .25s}
+    .nav-list.open{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+    .nav-list a{display:block;padding:14px 4px;font-size:14px}
+    .nav-list .nav-button{justify-content:center;margin-top:12px}
+    .hero-grid{grid-template-columns:1fr;gap:50px;padding-block:90px}
+    .hero-copy{max-width:750px}.hero h1{font-size:clamp(52px,8vw,76px)}
+    .hero-art{width:min(100%,600px);margin-inline:auto;min-height:500px}
+    .art-sheet{width:min(83%,480px)}.section{padding:88px 0}
+    .about-layout,.principle-box,.faq-layout,.contact-layout{grid-template-columns:1fr;gap:48px}
+    .about-visual{max-width:650px;width:100%}.principle-box{padding:45px}
+    .section-head{align-items:start;flex-direction:column;gap:10px}
+    .section-head .lead{max-width:660px;margin-top:6px}
+    .process-grid{gap:14px}
+    .cta-inner{padding:45px}
+  }
+  @media(max-width:680px){
+    .wrap{width:calc(100% - 36px)}.section{padding:76px 0}.eyebrow{margin-bottom:18px}
+    .heading{font-size:clamp(33px,8vw,47px)}.lead{font-size:14px;margin-top:16px}
+    .brand{font-size:18px}.brand-symbol{width:37px;height:37px}
+    .hero-grid{padding:73px 0 83px;gap:37px}.hero h1{font-size:clamp(44px,11vw,67px)}
+    .hero-description{font-size:14px;margin-top:24px;line-height:1.86}
+    .hero-kicker{font-size:10px}.hero-actions{margin-top:27px}.hero-actions .button{width:100%;justify-content:space-between}
+    .hero-features{margin-top:27px;gap:12px 16px;font-size:11px}
+    .hero-art{min-height:415px}.art-sheet{width:90%;min-height:380px;padding:22px;transform:rotate(1deg)}
+    .sheet-heading{font-size:29px}.sheet-caption{margin-top:22px}.sheet-item{min-height:76px;padding:12px}.sheet-item span{font-size:11px}.sheet-footer{padding-top:17px}
+    .art-tag{left:0;bottom:2px;padding:12px 15px}.art-tag strong{font-size:12px}.art-tag small{font-size:10px}
+    .hero-index{display:none}
+    .steps-strip-grid{grid-template-columns:1fr 1fr}.strip-item{padding:22px 13px;border-bottom:1px solid var(--line)}.strip-item:nth-child(2){border-right:0}.strip-item:nth-child(n+3){border-bottom:0}.strip-item:first-child{padding-left:13px}.strip-item span:last-child{font-size:11px}
+    .services-grid{grid-template-columns:1fr;gap:12px;margin-top:34px}.service-card{min-height:250px;padding:27px}
+    .service-card h3{margin-top:23px}.service-link{padding-top:21px}
+    .about-visual{min-height:430px}.visual-frame{width:83%;padding:20px}.visual-aside{right:5px;bottom:15px;padding:12px 15px}
+    .about-list{gap:22px;margin-top:29px}
+    .process-grid{grid-template-columns:1fr 1fr;gap:35px 17px;margin-top:44px}.process-grid::before{display:none}.process-marker{height:50px;width:50px;margin-bottom:19px}.process-card h3{font-size:16px}.process-card p{font-size:12px}
+    .principle-box{padding:27px 20px;gap:31px}.principle-grid{gap:9px}.principle{padding:19px 15px;min-height:140px}.principle strong{font-size:12px}.principle span{font-size:10px}
+    .faq-layout{gap:28px}.faq-item summary{font-size:13px}
+    .contact-layout{gap:37px}.contact-points{margin-top:30px;gap:19px}
+    .contact-form{padding:25px 19px}.form-row{grid-template-columns:1fr;gap:0}.form-head h3{font-size:21px}
+    .final-cta{padding-bottom:72px}.cta-inner{padding:42px 25px;flex-direction:column;align-items:stretch}.cta-inner h2{font-size:30px}.cta-inner .button{justify-content:space-between}
+    .site-footer{padding-top:55px}.footer-top{flex-direction:column;gap:28px;padding-bottom:36px}.footer-bottom{flex-direction:column;gap:8px}
+    .back-top{right:14px;bottom:14px;width:42px;height:42px}
+  }
+  @media(max-width:385px){.hero h1{font-size:41px}.hero-kicker{font-size:9px}.hero-features{font-size:10px}.art-sheet{width:95%;padding:17px}.sheet-heading{font-size:26px}.sheet-item{padding:9px}.visual-frame{width:90%}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.motion-ready .reveal{opacity:1!important;transform:none!important}}
+  </style>
 </head>
-
 <body>
-
-<div class="demo-bar">
-    <strong>DEMO KONCEPT</strong> — ukázkový návrh webových stránek
-</div>
-
-<nav>
-    <div class="container nav">
-
-        <a href="#" class="logo">
-            <span class="logo-icon">N</span>
-            NOVA Services
-        </a>
-
-        <ul class="nav-links">
-            <li><a href="#sluzby">Služby</a></li>
-            <li><a href="#onas">O nás</a></li>
-            <li><a href="#postup">Jak pracujeme</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
-            <li><a class="nav-cta" href="#kontakt">Nezávazná poptávka</a></li>
-        </ul>
-
+  <!-- Reusable vector icons: no emoji, web fonts for icons, or third-party icon libraries. -->
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-mark" viewBox="0 0 24 24"><path d="M4 19V5l16 14V5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-diag" viewBox="0 0 24 24"><path d="M6 18 18 6M8 6h10v10"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+    <symbol id="i-layer" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M12 2.7v2m0 14.6v2M4.8 4.8l1.4 1.4m11.6 11.6 1.4 1.4M2.7 12h2m14.6 0h2M4.8 19.2l1.4-1.4M17.8 6.2l1.4-1.4"/><circle cx="12" cy="12" r="4.2"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13c4 3 14 3 18 0"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8 9 9 0 0 1-3.3-.6L4 21l1.3-4.2A8 8 0 1 1 20 11.5Z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 8 4v6c0 5-3 8-8 10-5-2-8-5-8-10V6l8-4Z"/><path d="m8.5 12 2.4 2.5 4.8-5"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M7 3H5a2 2 0 0 0-2 2c0 9 7 16 16 16a2 2 0 0 0 2-2v-2l-5-2.5-2 3c-3.6-1.8-5.7-3.9-7.5-7.5l3-2L7 3Z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="m5 13 7-7 7 7M12 6v14"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 2h8l5 5v15H6zM14 2v6h5M9 13h7M9 17h7"/></symbol>
+  </svg>
+  <a class="skip-link" href="#obsah">Přejít na obsah</a>
+  <div class="scroll-meter" aria-hidden="true" id="scrollMeter"></div>
+  <div class="demo-bar"><strong>DEMO KONCEPT</strong> Ukázkový návrh webové prezentace — nejde o skutečnou společnost</div>
+  <nav class="site-nav" id="siteNav" aria-label="Hlavní navigace">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#uvod" aria-label="NOVA Services – úvod">
+        <span class="brand-symbol"><svg class="icon" aria-hidden="true"><use href="#i-mark"/></svg></span><span><strong>NOVA</strong> <em>Services</em></span>
+      </a>
+      <ul class="nav-list" id="navList">
+        <li><a href="#sluzby">Naše služby</a></li>
+        <li><a href="#onas">O nás</a></li>
+        <li><a href="#postup">Jak pracujeme</a></li>
+        <li><a href="#otazky">Časté otázky</a></li>
+        <li><a href="#kontakt" class="nav-button">Nezávazná poptávka <svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-controls="navList" aria-expanded="false" aria-label="Otevřít navigaci"><span></span><span></span></button>
     </div>
-</nav>
-
-
-<header class="hero">
-<div class="container hero-grid">
-
-    <div>
-
-        <div class="eyebrow">
-            <span class="dot"></span>
-            Profesionální služby pro vaše potřeby
+  </nav>
+  <main id="obsah">
+    <header class="hero" id="uvod">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="hero-kicker">Profesionální služby. Osobní přístup.</div>
+          <h1>Na detailech <span class="accent">záleží.</span><br>Na výsledku nejvíc.</h1>
+          <p class="hero-description">Spolehlivé služby stojí na dobré domluvě. Vaše potřeby si vyslechneme, navrhneme vhodné řešení a provedeme vás celým procesem — srozumitelně a bez zbytečných komplikací.</p>
+          <div class="hero-actions">
+            <a href="#kontakt" class="button button-primary">Nezávazně poptat <svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></a>
+            <a href="#sluzby" class="button button-outline">Prohlédnout služby <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="hero-features"><span><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Osobní domluva</span><span><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Přehledný postup</span><span><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Řešení na míru</span></div>
         </div>
-
-        <h1>
-            Spolehlivé služby.
-            <span>Bez starostí.</span>
-        </h1>
-
-        <p class="hero-text">
-            Pomáháme zákazníkům rychle a jednoduše vyřešit to,
-            na čem jim záleží. Férový přístup, jasná komunikace
-            a řešení přizpůsobené vašim potřebám.
-        </p>
-
-        <div class="hero-buttons">
-            <a class="btn btn-blue" href="#kontakt">
-                Nezávazně poptat →
-            </a>
-
-            <a class="btn btn-light" href="#sluzby">
-                Prohlédnout služby
-            </a>
+        <div class="hero-art" aria-label="Grafické znázornění čtyř fází spolupráce">
+          <div class="art-lines" aria-hidden="true"></div><div class="art-outline" aria-hidden="true"></div>
+          <div class="art-sheet">
+            <div class="sheet-top"><span class="mark">NOVA<span style="color:#3568ed">.</span></span><span class="edition">Přehled služeb / 2026</span></div>
+            <div class="sheet-caption">Spolupráce s jasným plánem</div>
+            <div class="sheet-heading">Od prvního kontaktu <span class="sheet-accent">k řešení.</span></div>
+            <div class="sheet-grid"><div class="sheet-item"><small>01 / ZADÁNÍ</small><span>Nasloucháme</span></div><div class="sheet-item"><small>02 / PLÁN</small><span>Navrhujeme</span></div><div class="sheet-item"><small>03 / PRŮBĚH</small><span>Realizujeme</span></div><div class="sheet-item"><small>04 / VÝSLEDEK</small><span>Předáváme</span></div></div>
+            <div class="sheet-footer"><span>Vše důležité na jednom místě.</span><svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></div>
+          </div>
+          <div class="art-tag"><strong>Promyšlený postup</strong><small>Od zadání po dokončení</small></div>
         </div>
-
-        <div class="hero-features">
-            <span><b class="check">✓</b> Nezávazná konzultace</span>
-            <span><b class="check">✓</b> Individuální nabídka</span>
-            <span><b class="check">✓</b> Rychlá komunikace</span>
-        </div>
-
+      </div>
+      <div class="hero-index" aria-hidden="true">NOVA SERVICES — KONCEPT FIREMNÍ PREZENTACE</div>
+    </header>
+    <div class="steps-strip" aria-label="Průběh spolupráce">
+      <div class="wrap steps-strip-grid"><div class="strip-item"><span class="strip-num">01</span><span>Jednoduchá poptávka</span></div><div class="strip-item"><span class="strip-num">02</span><span>Domluva detailů</span></div><div class="strip-item"><span class="strip-num">03</span><span>Realizace řešení</span></div><div class="strip-item"><span class="strip-num">04</span><span>Dokončení spolupráce</span></div></div>
     </div>
-
-
-    <div class="hero-card-wrap">
-
-        <div class="hero-card">
-
-            <span class="mini-label">Naše služby</span>
-
-            <h3>Jak vám můžeme pomoci?</h3>
-
-            <p>
-                Vyberte oblast, kterou právě potřebujete řešit.
-            </p>
-
-            <div class="fake-services">
-
-                <div class="fake-service">
-                    <div class="service-icon-small">◆</div>
-                    <div>
-                        <strong>Hlavní služba</strong>
-                        <span>Kompletní řešení na míru</span>
-                    </div>
-                </div>
-
-                <div class="fake-service">
-                    <div class="service-icon-small">↗</div>
-                    <div>
-                        <strong>Doplňková služba</strong>
-                        <span>Rychle a bez komplikací</span>
-                    </div>
-                </div>
-
-                <div class="fake-service">
-                    <div class="service-icon-small">✓</div>
-                    <div>
-                        <strong>Individuální řešení</strong>
-                        <span>Podle vašich požadavků</span>
-                    </div>
-                </div>
-
-            </div>
-
+    <section class="section services" id="sluzby">
+      <div class="wrap">
+        <div class="section-head"><div class="reveal"><div class="eyebrow">Naše služby</div><h2 class="heading">Co pro vás můžeme<br>udělat?</h2></div><p class="lead reveal">Přehledně uspořádaná nabídka, ve které se rychle zorientujete. Každou službu lze přizpůsobit konkrétním potřebám.</p></div>
+        <div class="services-grid">
+          <article class="service-card reveal"><div class="service-card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-layer"/></svg></span><span class="service-no">01 / 06</span></div><h3>Hlavní služba</h3><p>Kompletní řešení od úvodní domluvy po předání. Jasný rozsah, postup a výsledek.</p><a href="#kontakt" class="service-link" data-service="Hlavní služba">Poptat službu <svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></a></article>
+          <article class="service-card reveal"><div class="service-card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg></span><span class="service-no">02 / 06</span></div><h3>Specializované řešení</h3><p>Individuální přístup ke specifickým požadavkům, které potřebují více pozornosti.</p><a href="#kontakt" class="service-link" data-service="Specializované řešení">Poptat službu <svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></a></article>
+          <article class="service-card reveal"><div class="service-card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span><span class="service-no">03 / 06</span></div><h3>Doplňková služba</h3><p>Praktické rozšíření základní nabídky pro situace, které vyžadují něco navíc.</p><a href="#kontakt" class="service-link" data-service="Doplňková služba">Poptat službu <svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></a></article>
+          <article class="service-card reveal"><div class="service-card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-target"/></svg></span><span class="service-no">04 / 06</span></div><h3>Řešení na míru</h3><p>Pokud se váš požadavek nevejde do běžné nabídky, připravíme postup podle zadání.</p><a href="#kontakt" class="service-link" data-service="Řešení na míru">Poptat službu <svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></a></article>
+          <article class="service-card reveal"><div class="service-card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span><span class="service-no">05 / 06</span></div><h3>Konzultace</h3><p>Pomůžeme upřesnit zadání a vybrat řešení, které dává smysl i do budoucna.</p><a href="#kontakt" class="service-link" data-service="Konzultace">Domluvit konzultaci <svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></a></article>
+          <article class="service-card reveal"><div class="service-card-top"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><span class="service-no">06 / 06</span></div><h3>Následná péče</h3><p>Po dokončení můžete navázat s dalšími požadavky a průběžnou podporou.</p><a href="#kontakt" class="service-link" data-service="Následná péče">Zjistit více <svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></a></article>
         </div>
-
-        <div class="floating">
-            <strong>Rychlá poptávka</strong>
-            <span>Ozveme se vám co nejdříve</span>
-        </div>
-
-    </div>
-
-</div>
-</header>
-
-
-<div class="stats">
-<div class="container stats-grid">
-
-    <div class="stat">
-        <strong>01</strong>
-        <span>Jednoduchá poptávka</span>
-    </div>
-
-    <div class="stat">
-        <strong>02</strong>
-        <span>Domluva řešení</span>
-    </div>
-
-    <div class="stat">
-        <strong>03</strong>
-        <span>Realizace</span>
-    </div>
-
-    <div class="stat">
-        <strong>04</strong>
-        <span>Hotovo</span>
-    </div>
-
-</div>
-</div>
-
-
-<section class="services" id="sluzby">
-<div class="container">
-
-    <span class="section-tag">Co nabízíme</span>
-
-    <h2 class="section-title">
-        Služby postavené kolem vašich potřeb.
-    </h2>
-
-    <p class="section-sub">
-        Přehledná prezentace nabídky umožní návštěvníkovi během několika
-        sekund zjistit, s čím mu můžete pomoci.
-    </p>
-
-
-    <div class="services-grid">
-
-        <article class="service-card">
-            <div class="service-icon">◆</div>
-            <h3>Hlavní služba</h3>
-            <p>
-                Prostor pro popis hlavní služby, její výhody
-                a stručné vysvětlení toho, co zákazník získá.
-            </p>
-            <a class="service-link" href="#kontakt">Mám zájem →</a>
-        </article>
-
-        <article class="service-card">
-            <div class="service-icon">⚙</div>
-            <h3>Specializované řešení</h3>
-            <p>
-                Nabídku lze rozdělit do přehledných kategorií
-                podle skutečných služeb firmy.
-            </p>
-            <a class="service-link" href="#kontakt">Mám zájem →</a>
-        </article>
-
-        <article class="service-card">
-            <div class="service-icon">↗</div>
-            <h3>Doplňková služba</h3>
-            <p>
-                Další služba nebo produkt, který zákazníkům
-                pomáhá vyřešit konkrétní problém.
-            </p>
-            <a class="service-link" href="#kontakt">Mám zájem →</a>
-        </article>
-
-        <article class="service-card">
-            <div class="service-icon">✓</div>
-            <h3>Řešení na míru</h3>
-            <p>
-                Každý zákazník může mít jiné požadavky.
-                Nabídku proto lze připravit individuálně.
-            </p>
-            <a class="service-link" href="#kontakt">Mám zájem →</a>
-        </article>
-
-        <article class="service-card">
-            <div class="service-icon">◉</div>
-            <h3>Konzultace</h3>
-            <p>
-                Nejste si jistí správným řešením?
-                Nejprve společně probereme vaše potřeby.
-            </p>
-            <a class="service-link" href="#kontakt">Kontaktovat →</a>
-        </article>
-
-        <article class="service-card">
-            <div class="service-icon">★</div>
-            <h3>Následná péče</h3>
-            <p>
-                Spolupráce nemusí skončit realizací.
-                Pomůžeme i s dalšími požadavky.
-            </p>
-            <a class="service-link" href="#kontakt">Zjistit více →</a>
-        </article>
-
-    </div>
-
-</div>
-</section>
-
-
-<section id="onas">
-<div class="container about-grid">
-
-    <div class="about-visual">
-
-        <div class="visual-center">
-
-            <span>Jednoduchý proces</span>
-            <h3>Od požadavku k řešení</h3>
-
-            <div class="progress">
-                <div class="progress-top">
-                    <span>Poptávka</span>
-                    <span>100 %</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width:100%"></div>
-                </div>
-            </div>
-
-            <div class="progress">
-                <div class="progress-top">
-                    <span>Domluva</span>
-                    <span>75 %</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width:75%"></div>
-                </div>
-            </div>
-
-            <div class="progress">
-                <div class="progress-top">
-                    <span>Realizace</span>
-                    <span>50 %</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width:50%"></div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div>
-
-        <span class="section-tag">Proč si vybrat nás</span>
-
-        <h2 class="section-title">
-            Jednoduše, férově a bez zbytečných komplikací.
-        </h2>
-
-        <p class="section-sub">
-            Dobrá služba není jen o výsledku. Důležitá je také komunikace,
-            jasné podmínky a jistota, že zákazník ví, co může očekávat.
-        </p>
-
-        <div class="about-list">
-
-            <div class="about-item">
-                <div class="about-check">✓</div>
-                <div>
-                    <strong>Jasná komunikace</strong>
-                    <p>Vždy víte, co se právě řeší a jaký bude další krok.</p>
-                </div>
-            </div>
-
-            <div class="about-item">
-                <div class="about-check">✓</div>
-                <div>
-                    <strong>Individuální přístup</strong>
-                    <p>Řešení přizpůsobíme vašemu konkrétnímu požadavku.</p>
-                </div>
-            </div>
-
-            <div class="about-item">
-                <div class="about-check">✓</div>
-                <div>
-                    <strong>Férová nabídka</strong>
-                    <p>Rozsah a cenu si odsouhlasíme před zahájením práce.</p>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-</section>
-
-
-<section class="process" id="postup">
-<div class="container">
-
-    <span class="section-tag">Jak to funguje</span>
-
-    <h2 class="section-title">
-        Čtyři kroky k hotovému řešení.
-    </h2>
-
-    <p class="section-sub">
-        Zákazník přesně ví, co ho čeká od první zprávy až po dokončení.
-    </p>
-
-
-    <div class="process-grid">
-
-        <div class="process-card">
-            <div class="number">KROK 01</div>
-            <h3>Pošlete poptávku</h3>
-            <p>
-                Stručně nám popíšete, co potřebujete vyřešit.
-            </p>
-        </div>
-
-        <div class="process-card">
-            <div class="number">KROK 02</div>
-            <h3>Domluvíme detaily</h3>
-            <p>
-                Upřesníme požadavky, rozsah a vhodný postup.
-            </p>
-        </div>
-
-        <div class="process-card">
-            <div class="number">KROK 03</div>
-            <h3>Připravíme řešení</h3>
-            <p>
-                Pustíme se do realizace podle domluvených podmínek.
-            </p>
-        </div>
-
-        <div class="process-card">
-            <div class="number">KROK 04</div>
-            <h3>Předáme výsledek</h3>
-            <p>
-                Po dokončení společně zkontrolujeme výsledek.
-            </p>
-        </div>
-
-    </div>
-
-</div>
-</section>
-
-
-<section class="promise">
-<div class="container">
-
-    <div class="promise-box">
-
-        <div>
-            <span class="section-tag">Na čem záleží</span>
-
-            <h2 class="section-title">
-                Web má návštěvníka dovést k akci.
-            </h2>
-
-            <p class="section-sub">
-                Nestačí pouze dobře vypadat. Návštěvník musí rychle pochopit
-                nabídku, získat důvěru a jednoduše najít způsob,
-                jak firmu kontaktovat.
-            </p>
-        </div>
-
-        <div class="promise-cards">
-
-            <div class="promise-card">
-                👁️
-                <strong>Přehlednost</strong>
-                <span>Jasná struktura obsahu</span>
-            </div>
-
-            <div class="promise-card">
-                📱
-                <strong>Mobilní verze</strong>
-                <span>Pohodlné použití na telefonu</span>
-            </div>
-
-            <div class="promise-card">
-                ⚡
-                <strong>Rychlost</strong>
-                <span>Lehký a svižný web</span>
-            </div>
-
-            <div class="promise-card">
-                ✉️
-                <strong>Poptávky</strong>
-                <span>Jasná cesta ke kontaktu</span>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-</section>
-
-
-<section class="contact" id="kontakt">
-<div class="container contact-grid">
-
-    <div>
-
-        <span class="section-tag">Kontakt</span>
-
-        <h2 class="section-title">
-            Řekněte nám, co potřebujete.
-        </h2>
-
-        <p class="section-sub">
-            Vyplňte krátký formulář a ozveme se vám s návrhem dalšího postupu.
-        </p>
-
-
-        <div class="contact-info">
-
-            <div class="contact-line">
-                <div class="contact-circle">✉</div>
-                <div>
-                    <span>E-mail</span>
-                    <strong>info@vasefirma.cz</strong>
-                </div>
-            </div>
-
-            <div class="contact-line">
-                <div class="contact-circle">☎</div>
-                <div>
-                    <span>Telefon</span>
-                    <strong>+420 123 456 789</strong>
-                </div>
-            </div>
-
-            <div class="contact-line">
-                <div class="contact-circle">⌂</div>
-                <div>
-                    <span>Působnost</span>
-                    <strong>Praha a Středočeský kraj</strong>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <form class="form" onsubmit="demoSubmit(event)">
-
-        <h3>Nezávazná poptávka</h3>
-
-        <p class="form-sub">
-            Vyplnění zabere přibližně jednu minutu.
-        </p>
-
-        <div class="form-row">
-
-            <div class="field">
-                <label>Jméno</label>
-                <input type="text" placeholder="Jan Novák" required>
-            </div>
-
-            <div class="field">
-                <label>Telefon</label>
-                <input type="tel" placeholder="+420 123 456 789">
-            </div>
-
-        </div>
-
-        <div class="field">
-            <label>E-mail</label>
-            <input type="email" placeholder="jan@email.cz" required>
-        </div>
-
-        <div class="field">
-            <label>O jakou službu máte zájem?</label>
-
-            <select>
-                <option>Vyberte službu</option>
-                <option>Hlavní služba</option>
-                <option>Specializované řešení</option>
-                <option>Individuální nabídka</option>
-                <option>Konzultace</option>
-            </select>
-        </div>
-
-        <div class="field">
-            <label>Jak vám můžeme pomoci?</label>
-            <textarea placeholder="Stručně popište svůj požadavek..."></textarea>
-        </div>
-
-        <button class="btn btn-blue" type="submit">
-            Odeslat nezávaznou poptávku →
-        </button>
-
-        <div class="form-note">
-            DEMO formulář – data nejsou skutečně odesílána.
-        </div>
-
-    </form>
-
-</div>
-</section>
-
-
-<section class="cta">
-<div class="container">
-
-    <div class="cta-box">
-
-        <h2>
-            Potřebujete vyřešit svou poptávku?
-        </h2>
-
-        <p>
-            Napište nám a společně najdeme řešení,
-            které bude odpovídat vašim potřebám.
-        </p>
-
-        <a href="#kontakt" class="btn btn-blue">
-            Nezávazně poptat →
-        </a>
-
-    </div>
-
-</div>
-</section>
-
-
-<footer>
-<div class="container">
-
-    <div class="footer-grid">
-
-        <div>
-            <div class="logo footer-logo">
-                <span class="logo-icon">N</span>
-                NOVA Services
-            </div>
-
-            <p class="footer-text">
-                Ukázkový koncept moderního prezentačního webu
-                pro firmu poskytující služby.
-            </p>
-        </div>
-
-        <div class="footer-links">
-            <a href="#sluzby">Služby</a>
-            <a href="#onas">O nás</a>
-            <a href="#postup">Jak pracujeme</a>
-            <a href="#kontakt">Kontakt</a>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        <span>© 2026 NOVA Services</span>
-        <span>DEMO PROJEKT · Nejedná se o skutečnou firmu</span>
-    </div>
-
-</div>
-</footer>
-
-
-<script>
-function demoSubmit(event){
-    event.preventDefault();
-
-    const button = event.target.querySelector("button");
-
-    const original = button.innerHTML;
-
-    button.innerHTML = "✓ Demo poptávka vyplněna";
-    button.style.background = "#24a978";
-
-    setTimeout(() => {
-        button.innerHTML = original;
-        button.style.background = "";
-    }, 3000);
-}
-</script>
-
+      </div>
+    </section>
+    <section class="section about" id="onas"><div class="wrap about-layout">
+      <div class="about-visual reveal" aria-label="Grafický přehled průběhu spolupráce">
+        <div class="visual-frame"><div class="frame-top"><strong>Jasný postup<span style="color:#3568ed">.</span></strong><small>01—04</small></div><div class="frame-label">Jednotlivé fáze</div>
+          <div class="process-row"><b>1</b> Vyslechneme zadání <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></div><div class="process-row"><b>2</b> Dohodneme řešení <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></div><div class="process-row"><b>3</b> Pustíme se do práce <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></div><div class="process-row"><b>4</b> Předáme výsledek <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></div>
+          <div class="visual-bottom"><span>Transparentní spolupráce</span><strong>NOVA / SERVICES</strong></div></div><div class="visual-aside">Vždy víte, co následuje.</div>
+      </div>
+      <div class="reveal"><div class="eyebrow">Proč NOVA Services</div><h2 class="heading">Dobrá práce začíná dobrou domluvou.</h2><p class="lead">Věříme v jednoduchou komunikaci, promyšlené řešení a jasná očekávání. Od první otázky po předání výsledku se můžete orientovat v tom, co se právě děje.</p>
+        <div class="about-list"><div class="about-point"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><strong>Komunikace bez zbytečností</strong><p>Vše důležité si vysvětlíme předem a průběžně vás informujeme.</p></div></div><div class="about-point"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><strong>Řešení pro vaše potřeby</strong><p>Zakázku přizpůsobíme skutečnému zadání, ne univerzálnímu vzoru.</p></div></div><div class="about-point"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><strong>Jasná dohoda před začátkem</strong><p>O rozsahu a ceně se domluvíme dřív, než začne realizace.</p></div></div></div>
+      </div>
+    </div></section>
+    <section class="section process" id="postup"><div class="wrap"><div class="reveal"><div class="eyebrow">Průběh spolupráce</div><h2 class="heading">Čtyři kroky.<br>Jeden společný cíl.</h2><p class="lead">Srozumitelný proces, ve kterém víte, co bude následovat.</p></div><div class="process-grid"><article class="process-card reveal"><span class="process-marker">01</span><h3>Napíšete nám</h3><p>Popíšete, co potřebujete vyřešit, a doplníte základní informace.</p></article><article class="process-card reveal"><span class="process-marker">02</span><h3>Probereme zadání</h3><p>Domluvíme se na možnostech, podmínkách a dalším postupu.</p></article><article class="process-card reveal"><span class="process-marker">03</span><h3>Realizujeme</h3><p>Pracujeme podle dohodnutého rozsahu a komunikujeme průběh.</p></article><article class="process-card reveal"><span class="process-marker">04</span><h3>Předáme výsledek</h3><p>Společně zkontrolujeme výstup a doladíme případné detaily.</p></article></div></div></section>
+    <section class="section principles"><div class="wrap"><div class="principle-box reveal"><div><div class="eyebrow">Co považujeme za důležité</div><h2 class="heading">Přístup, který dává smysl.</h2><p class="lead">Důvěra nevzniká velkými sliby, ale poctivou prací, jednoduchou komunikací a výsledkem, za kterým si stojíme.</p></div><div class="principle-grid"><div class="principle"><svg class="icon" aria-hidden="true"><use href="#i-layer"/></svg><strong>Přehlednost</strong><span>Rozumíte nabídce i průběhu</span></div><div class="principle"><svg class="icon" aria-hidden="true"><use href="#i-monitor"/></svg><strong>Dostupnost</strong><span>Jednoduchá cesta ke kontaktu</span></div><div class="principle"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><strong>Respekt k času</strong><span>Jasná domluva bez obcházení</span></div><div class="principle"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><strong>Transparentnost</strong><span>Podmínky známé předem</span></div></div></div></div></section>
+    <section class="section faq" id="otazky"><div class="wrap faq-layout"><div class="reveal"><div class="eyebrow">Časté otázky</div><h2 class="heading">Věci, které vás mohou zajímat.</h2><p class="lead">Než napíšete, najdete tu odpovědi na základní otázky o spolupráci.</p></div><div class="faq-list reveal"><details class="faq-item"><summary>Je nezávazná poptávka zdarma? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Odeslání poptávky samo o sobě nic nestojí. Konkrétní podmínky spolupráce se vždy stanovují individuálně před zahájením práce.</p></details><details class="faq-item"><summary>Jak zjistím cenu služby? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Cena závisí na konkrétním zadání, rozsahu a náročnosti. Po upřesnění požadavků lze připravit přehlednou nabídku.</p></details><details class="faq-item"><summary>Co když nevím, kterou službu vybrat? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Ve formuláři stačí zvolit konzultaci nebo individuální řešení a stručně popsat situaci.</p></details><details class="faq-item"><summary>Jak probíhá spolupráce? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Nejdříve se upřesní zadání, následně se potvrdí podmínky a až poté začíná samotná realizace. Po dokončení následuje předání.</p></details></div></div></section>
+    <section class="section contact" id="kontakt"><div class="wrap contact-layout"><div class="reveal"><div class="eyebrow">Kontaktujte nás</div><h2 class="heading">Máte představu?<br>Pojďme ji probrat.</h2><p class="lead">Napište nám, co potřebujete. Na základě vašeho zadání lze navrhnout nejvhodnější další postup.</p><div class="contact-points"><div class="contact-item"><div class="contact-symbol"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></div><div><small>E-mail</small><strong><a href="mailto:info@vasefirma.cz">info@vasefirma.cz</a></strong></div></div><div class="contact-item"><div class="contact-symbol"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></div><div><small>Telefon</small><strong><a href="tel:+420123456789">+420 123 456 789</a></strong></div></div><div class="contact-item"><div class="contact-symbol"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></div><div><small>Oblast působení</small><strong>Praha a Středočeský kraj</strong></div></div></div><p class="contact-note">Jde o demonstrační kontaktní údaje a formulář. Před zveřejněním skutečného firemního webu je nutné nahradit je reálnými informacemi a nastavit odesílání.</p></div>
+      <form class="contact-form reveal" id="contactForm"><div class="form-head"><div><h3>Nezávazná poptávka</h3><p>Vyplňte pár informací. Zbytek společně upřesníme.</p></div><svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></div><div class="form-row"><div class="field"><label for="contactName">Jméno *</label><input id="contactName" name="name" type="text" autocomplete="name" placeholder="Jan Novák" required maxlength="100"></div><div class="field"><label for="contactPhone">Telefon <span>(nepovinné)</span></label><input id="contactPhone" name="phone" type="tel" autocomplete="tel" placeholder="+420 123 456 789" maxlength="25"></div></div><div class="field"><label for="contactEmail">E-mail *</label><input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="jan@email.cz" required maxlength="150"></div><div class="field"><label for="serviceSelect">O jakou službu máte zájem?</label><select name="service" id="serviceSelect"><option value="">Vyberte službu</option><option value="Hlavní služba">Hlavní služba</option><option value="Specializované řešení">Specializované řešení</option><option value="Doplňková služba">Doplňková služba</option><option value="Řešení na míru">Řešení na míru</option><option value="Konzultace">Konzultace</option><option value="Následná péče">Následná péče</option></select></div><div class="field"><label for="contactMessage">Jak vám můžeme pomoci?</label><textarea id="contactMessage" name="message" placeholder="Stručně popište svůj požadavek..."></textarea></div><button type="submit" class="button button-primary form-submit">Vyzkoušet demo poptávku <svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></button><p class="form-disclaimer">Toto je demo. Vyplněná data se neodesílají ani neukládají.</p><div class="form-response" id="formResponse" role="status" aria-live="polite"></div></form></div></section>
+    <section class="final-cta"><div class="wrap"><div class="cta-inner reveal"><div><h2>Dobrá spolupráce začíná jednoduchou zprávou.</h2><p>Řekněte nám, co potřebujete. Společně najdeme vhodný postup.</p></div><a href="#kontakt" class="button button-white">Přejít na poptávku <svg class="icon" aria-hidden="true"><use href="#i-diag"/></svg></a></div></div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-top"><div><div class="brand"><span class="brand-symbol"><svg class="icon" aria-hidden="true"><use href="#i-mark"/></svg></span><span><strong>NOVA</strong> <em>Services</em></span></div><p class="footer-summary">Ukázkový koncept moderního prezentačního webu pro společnost poskytující služby. Čistý design, přehledná nabídka a snadný kontakt.</p></div><div class="footer-links"><a href="#sluzby">Služby</a><a href="#onas">O nás</a><a href="#postup">Jak pracujeme</a><a href="#otazky">Otázky</a><a href="#kontakt">Kontakt</a></div></div><div class="footer-bottom"><span>© 2026 NOVA Services · Demo prezentace</span><span>Ukázkový projekt — nejde o skutečnou firmu</span></div></div></footer>
+  <button class="back-top" id="backTop" type="button" aria-label="Zpět nahoru" title="Zpět nahoru"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></button>
+  <script>
+  (() => {
+    'use strict';
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const nav = document.getElementById('siteNav');
+    const navList = document.getElementById('navList');
+    const toggle = document.getElementById('menuToggle');
+    const scrollMeter = document.getElementById('scrollMeter');
+    const backTop = document.getElementById('backTop');
+    const form = document.getElementById('contactForm');
+    const select = document.getElementById('serviceSelect');
+    function closeMenu(){navList.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Otevřít navigaci');document.body.classList.remove('menu-open')}
+    toggle.addEventListener('click',() => {
+      const open = navList.classList.toggle('open');
+      toggle.setAttribute('aria-expanded',String(open));
+      toggle.setAttribute('aria-label',open?'Zavřít navigaci':'Otevřít navigaci');
+      document.body.classList.toggle('menu-open',open);
+    });
+    navList.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+    document.addEventListener('click',e=>{if(!nav.contains(e.target))closeMenu()});
+    const mq = window.matchMedia('(min-width: 931px)');
+    if(mq.addEventListener)mq.addEventListener('change',e=>{if(e.matches)closeMenu()});
+    let queued=false;
+    function updateScroll(){
+      const y=window.scrollY;
+      const height=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+      scrollMeter.style.transform=`scaleX(${Math.min(1,Math.max(0,y/height))})`;
+      nav.classList.toggle('scrolled',y>10);
+      backTop.classList.toggle('show',y>600);
+      queued=false;
+    }
+    addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(updateScroll)}},{passive:true});
+    addEventListener('resize',updateScroll,{passive:true});updateScroll();
+    backTop.addEventListener('click',()=>scrollTo({top:0,behavior:reduced?'auto':'smooth'}));
+    // Only hide reveal items after the observer is ready.
+    if(!reduced && 'IntersectionObserver' in window){
+      const items=[...document.querySelectorAll('.reveal')];
+      const observer=new IntersectionObserver((entries,obs)=>entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add('visible');obs.unobserve(entry.target)}
+      }),{threshold:.08,rootMargin:'0px 0px -35px 0px'});
+      items.forEach(el=>{
+        const idx=Array.from(el.parentNode.children).indexOf(el);
+        if(el.matches('.service-card,.process-card'))el.style.setProperty('--delay',`${Math.min(idx%6,5)*65}ms`);
+        observer.observe(el);
+      });
+      document.documentElement.classList.add('motion-ready');
+    }
+    // Current section indicator.
+    const anchors=[...navList.querySelectorAll('a[href^="#"]:not(.nav-button)')];
+    if('IntersectionObserver' in window){
+      const sections=document.querySelectorAll('header[id],section[id]');
+      const secObserver=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+          if(!e.isIntersecting)return;
+          anchors.forEach(link=>{const match=link.getAttribute('href')==='#'+e.target.id;link.classList.toggle('active',match);if(match)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')});
+        });
+      },{rootMargin:'-20% 0px -65% 0px'});
+      sections.forEach(el=>secObserver.observe(el));
+    }
+    document.querySelectorAll('[data-service]').forEach(a=>a.addEventListener('click',()=>{
+      const val=a.getAttribute('data-service');
+      if([...select.options].some(opt=>opt.value===val))select.value=val;
+    }));
+    // A demo must not claim that an actual submission happened.
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      if(!form.reportValidity())return;
+      const response=document.getElementById('formResponse');
+      response.textContent='Ukázka vyplněna. Formulář je pouze demonstrační – vaše údaje nebyly odeslány ani uloženy.';
+      response.classList.add('show');
+      response.scrollIntoView({block:'nearest',behavior:reduced?'auto':'smooth'});
+    });
+  })();
+  </script>
 </body>
 </html>
